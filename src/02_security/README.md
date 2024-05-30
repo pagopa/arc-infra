@@ -12,8 +12,8 @@
 
 | Name | Version |
 |------|---------|
-| <a name="provider_azuread"></a> [azuread](#provider\_azuread) | 2.49.1 |
-| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | 3.103.1 |
+| <a name="provider_azuread"></a> [azuread](#provider\_azuread) | 2.50.0 |
+| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | 3.104.2 |
 | <a name="provider_external"></a> [external](#provider\_external) | 2.3.3 |
 
 ## Modules
@@ -51,7 +51,6 @@
 | <a name="input_input_file"></a> [input\_file](#input\_input\_file) | secret json file | `string` | n/a | yes |
 | <a name="input_location"></a> [location](#input\_location) | n/a | `string` | n/a | yes |
 | <a name="input_location_short"></a> [location\_short](#input\_location\_short) | Location short like eg: neu, weu.. | `string` | n/a | yes |
-| <a name="input_p4pa_owner"></a> [p4pa\_owner](#input\_p4pa\_owner) | If the infrastructure is on the P4PA subscriptions, the flag must be true; otherwise, it must be false. | `bool` | n/a | yes |
 | <a name="input_prefix"></a> [prefix](#input\_prefix) | n/a | `string` | n/a | yes |
 | <a name="input_tags"></a> [tags](#input\_tags) | n/a | `map(any)` | <pre>{<br>  "CreatedBy": "Terraform"<br>}</pre> | no |
 

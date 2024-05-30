@@ -53,8 +53,3 @@ variable "input_file" {
   type        = string
   description = "secret json file"
 }
-
-variable "p4pa_owner" {
-  type        = bool
-  description = "If the infrastructure is on the P4PA subscriptions, the flag must be true; otherwise, it must be false."
-}

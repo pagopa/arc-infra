@@ -1,0 +1,13 @@
+locals {
+  project          = "${var.prefix}-${var.env_short}-${var.location_short}-${var.domain}"
+  product          = "${var.prefix}-${var.env_short}"
+  product_nodomain = "${var.prefix}-${var.env_short}-${var.location_short}"
+
+  tags_for_private_dns = { "PrivateDns" = "true" }
+
+  # Dns Forwarder
+  dns_forwarder_vm_image_name = "${local.product_nodomain}-packer-dns-forwarder-ubuntu2204-image-v1"
+
+  key_vault_id_core = data.azurerm_key_vault.key_vault.id
+
+}

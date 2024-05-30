@@ -1,5 +1,5 @@
 resource "azurerm_resource_group" "sec_rg" {
-  name     = "${local.product}-sec-rg"
+  name     = "${local.project}-sec-rg"
   location = var.location
 
   tags = var.tags
@@ -12,7 +12,7 @@ resource "azurerm_resource_group" "sec_rg" {
 module "key_vault" {
   source = "./.terraform/modules/__v3__/key_vault/"
 
-  name                          = "${local.product}-core-kv"
+  name                          = "${local.project}-kv"
   location                      = azurerm_resource_group.sec_rg.location
   resource_group_name           = azurerm_resource_group.sec_rg.name
   tenant_id                     = data.azurerm_client_config.current.tenant_id

@@ -5,7 +5,6 @@ env            = "prod"
 domain         = "core"
 location       = "italynorth"
 location_short = "itn"
-p4pa_owner     = true
 
 tags = {
   CreatedBy   = "Terraform"
