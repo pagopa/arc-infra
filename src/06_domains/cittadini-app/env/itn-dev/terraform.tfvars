@@ -14,3 +14,5 @@ tags = {
   Source      = "https://github.com/pagopa/arc-infra"
   CostCenter  = "TS310 - PAGAMENTI & SERVIZI"
 }
+
+bizevents_base_url = "https://api.dev.platform.pagopa.it/bizevents/tx-service/v1/"

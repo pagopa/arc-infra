@@ -13,6 +13,8 @@ locals {
   # 💙 Azure
   #
 
-  tenant_id       = data.azurerm_subscription.current.tenant_id
-  subscription_id = data.azurerm_subscription.current.subscription_id
+  tenant_id                     = data.azurerm_subscription.current.tenant_id
+  subscription_id               = data.azurerm_subscription.current.subscription_id
+  azdo_managed_identity_rg_name = "${local.project_core}-identity-rg"
+  azdo_managed_identity_name    = upper("${var.env}-${var.prefix}-AZURE")
 }

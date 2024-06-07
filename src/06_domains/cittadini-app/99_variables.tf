@@ -53,3 +53,8 @@ variable "k8s_kube_config_path_prefix" {
   type    = string
   default = "~/.kube"
 }
+
+variable "bizevents_base_url" {
+  type        = string
+  description = "Url of pagopa bizevents api"
+}
