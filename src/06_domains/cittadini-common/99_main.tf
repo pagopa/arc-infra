@@ -27,6 +27,12 @@ provider "kubernetes" {
   config_path = "${var.k8s_kube_config_path_prefix}/config-${local.aks_name}"
 }
 
+provider "helm" {
+  kubernetes {
+    config_path = "${var.k8s_kube_config_path_prefix}/config-${local.aks_name}"
+  }
+}
+
 module "__v3__" {
   # https://github.com/pagopa/terraform-azurerm-v3/releases/tag/v8.18.0
   source = "git::https://github.com/pagopa/terraform-azurerm-v3.git?ref=8d21a675f3f12e5c217c76ea7786a47c64d939b7"

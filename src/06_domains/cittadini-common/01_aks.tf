@@ -34,3 +34,34 @@ module "domain_pod_identity" {
   key_permissions    = ["Get", "Decrypt", "Encrypt"]
   secret_permissions = ["Get"]
 }
+
+resource "helm_release" "reloader" {
+  name       = "reloader"
+  repository = "https://stakater.github.io/stakater-charts"
+  chart      = "reloader"
+  version    = "v1.0.30"
+  namespace  = kubernetes_namespace.namespace.metadata[0].name
+
+  set {
+    name  = "reloader.watchGlobally"
+    value = "false"
+  }
+}
+
+resource "helm_release" "cert_mounter" {
+  name         = "cert-mounter-blueprint"
+  repository   = "https://pagopa.github.io/aks-helm-cert-mounter-blueprint"
+  chart        = "cert-mounter-blueprint"
+  version      = "1.0.4"
+  namespace    = var.domain
+  timeout      = 120
+  force_update = true
+
+  values = [
+    templatefile("${path.root}/helm/cert-mounter.yaml.tpl", {
+      NAMESPACE        = var.domain,
+      KEYVAULT_NAME    = local.key_vault_name
+      CERTIFICATE_NAME = replace(local.kv_ingress_certificate_name, ".", "-"),
+    })
+  ]
+}
