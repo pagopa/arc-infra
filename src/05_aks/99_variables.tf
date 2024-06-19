@@ -128,8 +128,22 @@ variable "aks_alerts_enabled" {
 
 variable "nginx_ingress_helm_version" {
   type        = string
-  default     = "4.7.2"
   description = "Nginx ingress helm version https://github.com/kubernetes/ingress-nginx"
+}
+
+variable "keda_helm" {
+  type = object({
+    chart_version = string,
+    keda = object({
+      image_name = string,
+      image_tag  = string,
+    }),
+    metrics_api_server = object({
+      image_name = string,
+      image_tag  = string,
+    }),
+  })
+  description = "keda helm chart configuration"
 }
 
 # DNS

@@ -24,7 +24,7 @@ aks_cidr_subnet = ["10.1.0.0/17"]
 # AKS
 #
 
-aks_kubernetes_version = "1.27.7"
+aks_kubernetes_version = "1.29.4"
 
 # https://pagopa.atlassian.net/wiki/spaces/DEVOPS/pages/482967553/AKS#sku-(dimensionamento)
 aks_sku_tier = "Free"
@@ -54,7 +54,22 @@ aks_user_node_pool = {
   node_tags       = { node_tag_1 : "1" },
 }
 
-nginx_ingress_helm_version = "4.7.2"
+nginx_ingress_helm_version = "4.10.0"
+
+# chart releases: https://github.com/kedacore/charts/releases
+# keda image tags: https://github.com/kedacore/keda/pkgs/container/keda/versions
+# keda-metrics-apiserver image tags: https://github.com/kedacore/keda/pkgs/container/keda-metrics-apiserver/versions
+keda_helm = {
+  chart_version = "2.14.0"
+  keda = {
+    image_name = "ghcr.io/kedacore/keda"
+    image_tag  = "2.8.0@sha256:cce502ff17fd2984af70b4e470b403a82067929f6e4d1888875a52fcb33fa9fd"
+  }
+  metrics_api_server = {
+    image_name = "ghcr.io/kedacore/keda-metrics-apiserver"
+    image_tag  = "2.8.0@sha256:4afe231e9ce5ca351fcf10a83479eb0ee2f3e6dc0f386108b89d1b5623d56b14"
+  }
+}
 
 #
 # Dns
