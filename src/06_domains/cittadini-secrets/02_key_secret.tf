@@ -49,6 +49,10 @@ resource "azurerm_key_vault_secret" "secret" {
   key_vault_id = module.key_vault.id
   name         = local.all_secrets_value[each.value].chiave
   value        = local.all_secrets_value[each.value].valore
+  tags = {
+    "SOPS" : "True",
+    "Domain" : basename(path.cwd)
+  }
 
   depends_on = [
     module.key_vault,
