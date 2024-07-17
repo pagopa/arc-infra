@@ -26,6 +26,8 @@ cidr_subnet_appgateway = ["10.1.130.0/24"]  # 10.1.130.0 --> 10.1.130.255
 # cidr_subnet_dns_forwarder_lb = ["10.1.200.0/29"] # 10.1.200.0 --> 10.1.200.7
 # cidr_subnet_dns_vmss = ["10.1.200.8/29"] # 10.1.200.8 --> 10.1.200.15
 
+# cidr_subnet_cittadini = ["10.1.131.0/24"] # 10.1.131.0 --> 10.1.131.255 Subnet is linked to the cittadini domain
+
 #
 # DNS
 #
@@ -33,3 +35,6 @@ cidr_subnet_appgateway = ["10.1.130.0/24"]  # 10.1.130.0 --> 10.1.130.255
 external_domain          = "pagopa.it"
 dns_zone_prefix          = "dev.cittadini-p4pa"
 dns_zone_internal_prefix = "internal.dev.cittadini-p4pa"
+
+# CDN
+private_cdn_enabled = true

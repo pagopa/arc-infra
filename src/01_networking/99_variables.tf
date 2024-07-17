@@ -140,3 +140,13 @@ variable "enable_azdoa" {
   default     = true
   description = "Enable Azure DevOps agent."
 }
+
+#
+# Flag
+#
+
+variable "private_cdn_enabled" {
+  type        = bool
+  default     = false
+  description = "Flag to enable private storage account CDN"
+}

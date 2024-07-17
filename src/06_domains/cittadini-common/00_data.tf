@@ -11,6 +11,11 @@ data "azurerm_virtual_network" "vnet" {
   resource_group_name = local.vnet_resource_group_name
 }
 
+data "azurerm_private_dns_zone" "web_core_storage" {
+  name                = "privatelink.web.core.windows.net"
+  resource_group_name = local.vnet_resource_group_name
+}
+
 # 🖥️ Monitor
 
 data "azurerm_log_analytics_workspace" "log_analytics" {
