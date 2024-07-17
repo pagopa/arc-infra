@@ -7,6 +7,7 @@ resource "azurerm_resource_group" "cdn_rg" {
 }
 
 # CDN
+# DEV - CDN ENDPOINT DISABLE FROM CONSOLE
 module "cittadini_cdn" {
   source = "./.terraform/modules/__v3__/cdn/"
 
@@ -20,7 +21,8 @@ module "cittadini_cdn" {
   dns_zone_name                = "${var.dns_zone_prefix}.${var.external_domain}"
   dns_zone_resource_group_name = local.vnet_resource_group_name
 
-  storage_account_replication_type = "ZRS"
+  storage_account_replication_type      = "ZRS"
+  storage_public_network_access_enabled = false
 
   https_rewrite_enabled      = true
   index_document             = "index.html"
