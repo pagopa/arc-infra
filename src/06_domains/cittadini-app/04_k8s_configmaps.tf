@@ -16,6 +16,7 @@ resource "kubernetes_config_map" "rest_client" {
   }
 
   data = {
-    bizevents-base-url = var.bizevents_base_url
+    bizevents-base-url   = var.bizevents_base_url
+    pullpayment-base-url = var.gpd_payments_pull_base_url
   }
 }
