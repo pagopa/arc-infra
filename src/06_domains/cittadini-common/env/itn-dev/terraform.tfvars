@@ -25,8 +25,3 @@ azuread_service_principal_azure_cdn_frontdoor_id = "f3b3f72f-4770-47a5-8c1e-aa29
 
 # NETWORK
 # Logical CIDR for cittadini domain "10.1.131.0/24" # 10.1.131.0 --> 10.1.131.255
-
-cidr_subnet_prv_endpoint = ["10.1.131.0/26"] # 10.1.131.0 --> 10.1.131.63
-
-# FrontEnd
-private_cdn_enabled = true

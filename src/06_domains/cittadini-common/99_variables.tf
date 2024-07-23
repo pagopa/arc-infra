@@ -81,15 +81,3 @@ variable "azuread_service_principal_azure_cdn_frontdoor_id" {
   description = "Azure CDN Front Door Principal ID - Microsoft.AzureFrontDoor-Cdn"
 }
 
-variable "private_cdn_enabled" {
-  type        = bool
-  description = "Flag to make FE (Blob Storage) private"
-  default     = false
-}
-
-# VNET
-variable "cidr_subnet_prv_endpoint" {
-  type        = list(string)
-  description = "CIDRs private endpoint subnet"
-}
-

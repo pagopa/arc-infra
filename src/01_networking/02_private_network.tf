@@ -36,19 +36,6 @@ resource "azurerm_private_dns_zone" "key_vault_dns" {
   )
 }
 
-# ->> privatelink.web.core.windows.net  - private dns zone
-resource "azurerm_private_dns_zone" "web_core_storage" {
-  count = var.private_cdn_enabled ? 1 : 0
-
-  name                = "privatelink.web.core.windows.net"
-  resource_group_name = azurerm_resource_group.rg_vnet.name
-
-  tags = merge(
-    var.tags,
-    local.tags_for_private_dns
-  )
-}
-
 resource "azurerm_private_dns_zone_virtual_network_link" "all_to_vnet_core" {
   for_each = { for i, v in data.azurerm_resources.sub_resources.resources : data.azurerm_resources.sub_resources.resources[i].name => v }
 
