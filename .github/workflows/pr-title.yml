@@ -1,16 +1,15 @@
-name: 'PR title check'
+name: 'Validate PR title'
 on:
-  pull_request:
+  pull_request_target:
     types:
       - opened
       - edited
       - synchronize
-      - labeled
-      - unlabeled
 
 jobs:
-  pr-title-check:
-    runs-on: ubuntu-latest
+  main:
+    name: Validate PR title
+    runs-on: ubuntu-22.04
     steps:
       - uses: Slashgear/action-check-pr-title@860e8dc639f8e60335a6f5e8936ba67ed2536890 # v4.3.0
         with:
