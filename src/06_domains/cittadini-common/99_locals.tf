@@ -27,12 +27,13 @@ locals {
   #
   # 🔐 KV
   #
-  key_vault_name         = "${local.project}-kv"
-  key_vault_rg_name      = "${local.project}-sec-rg"
-  key_vault_id           = data.azurerm_key_vault.key_vault.id
-  key_vault_core_name    = "${local.project_core}-kv"
-  key_vault_core_rg_name = "${local.project_core}-sec-rg"
-  key_vault_core_id      = data.azurerm_key_vault.key_vault_core.id
+  kv_domain_name    = "${local.project}-kv"
+  kv_domain_rg_name = "${local.project}-sec-rg"
+  kv_domain_id      = data.azurerm_key_vault.key_vault_domain.id
+
+  kv_core_name    = "${local.project_core}-kv"
+  kv_core_rg_name = "${local.project_core}-sec-rg"
+  kv_core_id      = data.azurerm_key_vault.key_vault_core.id
 
   #
   # 💙 Azure
