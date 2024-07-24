@@ -22,14 +22,14 @@ data "azurerm_log_analytics_workspace" "log_analytics" {
 # 🔐 KV
 #
 
-data "azurerm_key_vault" "key_vault" {
-  name                = local.key_vault_name
-  resource_group_name = local.key_vault_rg_name
+data "azurerm_key_vault" "key_vault_domain" {
+  name                = local.kv_domain_name
+  resource_group_name = local.kv_domain_rg_name
 }
 
 data "azurerm_key_vault" "key_vault_core" {
-  name                = local.key_vault_core_name
-  resource_group_name = local.key_vault_core_rg_name
+  name                = local.kv_core_name
+  resource_group_name = local.kv_core_rg_name
 }
 
 

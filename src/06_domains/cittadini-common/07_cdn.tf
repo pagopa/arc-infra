@@ -27,12 +27,12 @@ module "cittadini_cdn" {
   error_404_document         = "error_404.html"
   log_analytics_workspace_id = local.log_analytics_workspace_id
 
-  keyvault_id                                      = local.key_vault_core_id
+  keyvault_id                                      = local.kv_core_id
   tenant_id                                        = local.tenant_id
   azuread_service_principal_azure_cdn_frontdoor_id = var.azuread_service_principal_azure_cdn_frontdoor_id
-  keyvault_resource_group_name                     = local.key_vault_core_rg_name
+  keyvault_resource_group_name                     = local.kv_core_rg_name
   keyvault_subscription_id                         = local.subscription_id
-  keyvault_vault_name                              = local.key_vault_core_name
+  keyvault_vault_name                              = local.kv_core_name
   custom_hostname_kv_enabled                       = true
 
   delivery_rule_rewrite = concat(

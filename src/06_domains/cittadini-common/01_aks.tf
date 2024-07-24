@@ -16,7 +16,7 @@ resource "azurerm_key_vault_secret" "aks_apiserver_url" {
   value        = "https://${local.aks_api_url}:443"
   content_type = "text/plain"
 
-  key_vault_id = local.key_vault_id
+  key_vault_id = local.kv_domain_id
 }
 
 module "domain_pod_identity" {
@@ -29,7 +29,7 @@ module "domain_pod_identity" {
 
   identity_name = "${var.domain}-pod-identity"
   namespace     = kubernetes_namespace.namespace.metadata[0].name
-  key_vault_id  = local.key_vault_id
+  key_vault_id  = local.kv_domain_id
 
   key_permissions    = ["Get", "Decrypt", "Encrypt"]
   secret_permissions = ["Get"]
@@ -60,7 +60,7 @@ resource "helm_release" "cert_mounter" {
   values = [
     templatefile("${path.root}/helm/cert-mounter.yaml.tpl", {
       NAMESPACE        = var.domain,
-      KEYVAULT_NAME    = local.key_vault_name
+      KEYVAULT_NAME    = local.kv_domain_name
       CERTIFICATE_NAME = replace(local.kv_ingress_certificate_name, ".", "-"),
     })
   ]
