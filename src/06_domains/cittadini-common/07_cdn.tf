@@ -24,7 +24,7 @@ module "cittadini_cdn" {
 
   https_rewrite_enabled      = true
   index_document             = "index.html"
-  error_404_document         = "error_404.html"
+  error_404_document         = "index.html"
   log_analytics_workspace_id = local.log_analytics_workspace_id
 
   keyvault_id                                      = local.kv_core_id
