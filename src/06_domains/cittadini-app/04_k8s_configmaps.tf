@@ -20,3 +20,16 @@ resource "kubernetes_config_map" "rest_client" {
     pullpayment-base-url = var.gpd_payments_pull_base_url
   }
 }
+
+resource "kubernetes_config_map" "assistance" {
+  metadata {
+    name      = "assistance"
+    namespace = var.domain
+  }
+
+  data = {
+    assistance-arc-zendesk-product-id   = "prod-arc"
+    assistance-arc-zendesk-organization = "_users_hc_arc"
+    arc-help-center-url                 = " https://arc.assistenza.pagopa.it/hc/it/requests/new"
+  }
+}
