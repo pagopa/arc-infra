@@ -66,7 +66,7 @@ resource "azurerm_public_ip" "appgateway_public_ip" {
 
 # API management
 resource "azurerm_public_ip" "apim_public_ip" {
-  name                = format("%s-apim-pip", local.project)
+  name                = "${local.project}-apim-pip"
   resource_group_name = azurerm_resource_group.rg_vnet.name
   location            = azurerm_resource_group.rg_vnet.location
   sku                 = "Standard"
