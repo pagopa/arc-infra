@@ -28,3 +28,7 @@ dns_zone_prefix = "uat.cittadini"
 
 app_gateway_sku_name = "Standard_v2"
 app_gateway_sku_tier = "Standard_v2"
+
+# AZDOA:
+enable_azdoa             = true
+azdo_agent_image_version = "v1"

@@ -25,6 +25,10 @@ apim_alerts_enabled = false
 external_domain = "pagopa.it"
 dns_zone_prefix = "dev.cittadini-p4pa"
 
-
+# APPGW
 app_gateway_sku_name = "Standard_v2"
 app_gateway_sku_tier = "Standard_v2"
+
+# AZDOA:
+enable_azdoa             = true
+azdo_agent_image_version = "v3"
