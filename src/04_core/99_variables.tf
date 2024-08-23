@@ -192,3 +192,8 @@ variable "devops_agent_balance_zones" {
   default     = false
   description = "(Optional) True if the devops agent instances must be evenly balanced between the configured zones"
 }
+
+variable "azdo_agent_image_version" {
+  type        = string
+  description = "Version as suffix to define the image related to azdo agent"
+}
