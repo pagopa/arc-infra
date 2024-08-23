@@ -2,17 +2,17 @@
 # Private DNS Zone
 #
 
-# ->> DNS private: internal.dev.p4pa.pagopa.it
+# ->> DNS private: internal.ENV.p4pa.pagopa.it
 
-#resource "azurerm_private_dns_zone" "internal_pagopa_it" {
-#  name                = "${var.dns_zone_internal_prefix}.${var.external_domain}"
-#  resource_group_name = azurerm_resource_group.rg_vnet.name
-#
-#  tags = merge(
-#    var.tags,
-#    local.tags_for_private_dns
-#  )
-#}
+resource "azurerm_private_dns_zone" "internal_pagopa_it" {
+  name                = "${var.dns_zone_internal_prefix}.${var.external_domain}"
+  resource_group_name = azurerm_resource_group.rg_vnet.name
+
+  tags = merge(
+    var.tags,
+    local.tags_for_private_dns
+  )
+}
 
 # ->> Storage Account (blob)  - private dns zone
 resource "azurerm_private_dns_zone" "storage_account" {
