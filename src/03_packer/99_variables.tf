@@ -57,3 +57,11 @@ variable "dns_forwarder_image_version" {
   type        = string
   description = "Version string to allow to force the creation of the image"
 }
+
+#
+# AZDO
+#
+variable "azdo_agent_image_version" {
+  type        = string
+  description = "Version string to allow to force the creation of the image"
+}

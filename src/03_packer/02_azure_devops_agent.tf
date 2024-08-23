@@ -12,6 +12,10 @@ module "azdoa_custom_image" {
   resource_group_name = azurerm_resource_group.azdo_rg.name
   location            = var.location
   image_name          = "${local.project}-azdo-agent-ubuntu2204-image"
-  image_version       = "v1"
+  image_version       = var.azdo_agent_image_version
   subscription_id     = data.azurerm_subscription.current.subscription_id
+
+  depends_on = [
+    azurerm_resource_group.azdo_rg
+  ]
 }
