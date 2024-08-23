@@ -81,22 +81,22 @@ resource "azurerm_public_ip" "apim_public_ip" {
 # Dns Delegation
 #
 
-## Prod ONLY record to DEV public DNS delegation
-#resource "azurerm_dns_ns_record" "dev_cittadini_p4pa_pagopa_it_ns" {
-#  count = var.env_short == "p" ? 1 : 0
-#
-#  name                = "dev"
-#  zone_name           = azurerm_dns_zone.public[0].name
-#  resource_group_name = azurerm_resource_group.rg_vnet.name
-#  records = [
-#    "ns1-37.azure-dns.com.",
-#    "ns2-37.azure-dns.net.",
-#    "ns3-37.azure-dns.org.",
-#    "ns4-37.azure-dns.info.",
-#  ]
-#  ttl  = var.dns_default_ttl_sec
-#  tags = var.tags
-#}
+# Prod ONLY record to DEV public DNS delegation
+resource "azurerm_dns_ns_record" "dev_cittadini_pagopa_it_ns" {
+  count = var.env_short == "p" ? 1 : 0
+
+  name                = "dev"
+  zone_name           = azurerm_dns_zone.public[0].name
+  resource_group_name = azurerm_resource_group.rg_vnet.name
+  records = [
+    "ns1-02.azure-dns.com.",
+    "ns2-02.azure-dns.net.",
+    "ns3-02.azure-dns.org.",
+    "ns4-02.azure-dns.info.",
+  ]
+  ttl  = var.dns_default_ttl_sec
+  tags = var.tags
+}
 
 # Prod ONLY record to UAT public DNS delegation
 resource "azurerm_dns_ns_record" "uat_cittadini_pagopa_it_ns" {
