@@ -32,4 +32,4 @@ app_gateway_alerts_enabled = false
 
 # AZDOA:
 enable_azdoa             = true
-azdo_agent_image_version = "v3"
+azdo_agent_image_version = "v1"

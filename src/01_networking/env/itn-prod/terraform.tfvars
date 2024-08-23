@@ -1,13 +1,13 @@
 prefix         = "arc"
-env_short      = "d"
-env            = "dev"
+env_short      = "p"
+env            = "prod"
 location       = "italynorth"
 location_short = "itn"
 domain         = "core"
 
 tags = {
   CreatedBy   = "Terraform"
-  Environment = "DEV"
+  Environment = "PROD"
   Owner       = "ARC"
   Source      = "https://github.com/pagopa/arc-infra"
   CostCenter  = "TS310 - PAGAMENTI & SERVIZI"
@@ -26,12 +26,12 @@ cidr_subnet_appgateway = ["10.1.130.0/24"]  # 10.1.130.0 --> 10.1.130.255
 # cidr_subnet_dns_forwarder_lb = ["10.1.200.0/29"] # 10.1.200.0 --> 10.1.200.7
 # cidr_subnet_dns_vmss = ["10.1.200.8/29"] # 10.1.200.8 --> 10.1.200.15
 
-# cidr_subnet_cittadini = ["10.1.131.0/24"] # 10.1.131.0 --> 10.1.131.255 Subnet is linked to the cittadini domain
+# cidr_subnet_cittadini = ["10.1.163.0/24"] # 10.1.163.0 --> 10.1.163.255 Subnet is linked to the cittadini domain
 
 #
 # DNS
 #
 
 external_domain          = "pagopa.it"
-dns_zone_prefix          = "dev.cittadini"
-dns_zone_internal_prefix = "internal.dev.cittadini"
+dns_zone_prefix          = "cittadini"
+dns_zone_internal_prefix = "internal.cittadini"
