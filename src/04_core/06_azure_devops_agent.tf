@@ -8,7 +8,7 @@ module "azdoa_linux_app" {
   subscription_id     = data.azurerm_subscription.current.subscription_id
   location            = var.location
   image_type          = "custom" # enables usage of "source_image_name"
-  source_image_name   = "${local.product}-${var.location_short}-packer-azdo-agent-ubuntu2204-image-v1"
+  source_image_name   = "${local.product}-${var.location_short}-packer-azdo-agent-ubuntu2204-image-${var.azdo_agent_image_version}"
   vm_sku              = "Standard_B2ms"
 
   zones        = var.devops_agent_zones
@@ -27,7 +27,7 @@ module "azdoa_linux_infra" {
   subscription_id     = data.azurerm_subscription.current.subscription_id
   location            = var.location
   image_type          = "custom" # enables usage of "source_image_name"
-  source_image_name   = "${local.product}-${var.location_short}-packer-azdo-agent-ubuntu2204-image-v1"
+  source_image_name   = "${local.product}-${var.location_short}-packer-azdo-agent-ubuntu2204-image-${var.azdo_agent_image_version}"
   vm_sku              = "Standard_B2ms"
 
   zones        = var.devops_agent_zones

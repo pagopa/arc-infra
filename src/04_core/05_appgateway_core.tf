@@ -158,31 +158,7 @@ module "app_gw" {
     }
   }
 
-  rewrite_rule_sets = [
-    {
-      name = "rewrite-rule-set-api"
-      rewrite_rules = [
-        {
-          name          = "http-deny-path"
-          rule_sequence = 1
-          conditions = [
-            {
-              variable    = "var_uri_path"
-              pattern     = "payhub/ws/fesp/*"
-              ignore_case = true
-              negate      = false
-            }
-          ]
-          request_header_configurations  = []
-          response_header_configurations = []
-          url = {
-            path         = "notfound"
-            query_string = null
-          }
-        }
-      ]
-    }
-  ]
+  rewrite_rule_sets = []
 
   # TLS
   identity_ids = [azurerm_user_assigned_identity.appgateway.id]
@@ -198,10 +174,10 @@ module "app_gw" {
       action_group_id    = azurerm_monitor_action_group.slack.id
       webhook_properties = null
     },
-    {
-      action_group_id    = azurerm_monitor_action_group.email.id
-      webhook_properties = null
-    }
+    #    {
+    #      action_group_id    = azurerm_monitor_action_group.email.id
+    #      webhook_properties = null
+    #    }
   ]
 
   # metrics docs
