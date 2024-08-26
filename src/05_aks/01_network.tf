@@ -1,7 +1,17 @@
-module "aks_snet" {
+module "aks_snet_system" {
   source                                        = "./.terraform/modules/__v3__/subnet"
-  name                                          = "${local.project}-aks-snet"
-  address_prefixes                              = var.aks_cidr_subnet
+  name                                          = "${local.project}-aks-system-snet"
+  address_prefixes                              = var.aks_cidr_system_subnet
+  resource_group_name                           = data.azurerm_virtual_network.vnet.resource_group_name
+  virtual_network_name                          = data.azurerm_virtual_network.vnet.name
+  private_link_service_network_policies_enabled = true
+  private_endpoint_network_policies_enabled     = true
+}
+
+module "aks_snet_user" {
+  source                                        = "./.terraform/modules/__v3__/subnet"
+  name                                          = "${local.project}-aks-user-snet"
+  address_prefixes                              = var.aks_cidr_user_subnet
   resource_group_name                           = data.azurerm_virtual_network.vnet.resource_group_name
   virtual_network_name                          = data.azurerm_virtual_network.vnet.name
   private_link_service_network_policies_enabled = true
