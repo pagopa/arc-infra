@@ -2,6 +2,7 @@ resource "kubernetes_namespace" "ingress" {
   metadata {
     name = "ingress"
   }
+  depends_on = [module.aks]
 }
 
 # from Microsoft docs https://docs.microsoft.com/it-it/azure/aks/ingress-internal-ip
@@ -15,15 +16,22 @@ module "nginx_ingress" {
     name          = "nginx-ingress"
     version       = var.nginx_ingress_helm_version
     chart         = "ingress-nginx"
-    recreate_pods = false #https://github.com/helm/helm/issues/6378 -> fixed in k8s 1.22
+    recreate_pods = true #https://github.com/helm/helm/issues/6378 -> fixed in k8s 1.22
     deploy        = 1
   }
 
   values = [
-    templatefile("${path.module}/ingress/loadbalancer.yaml.tpl", { load_balancer_ip = local.ingress_load_balancer_ip }),
+    templatefile("${path.module}/ingress/loadbalancer.yaml.tpl", {
+      load_balancer_ip    = local.ingress_load_balancer_ip
+      private_subnet_name = module.aks_snet_user.name
+    }),
   ]
 
   set = [
+    {
+      name  = "controller.replicaCount"
+      value = "1"
+    },
     {
       name  = "controller.nodeSelector.beta\\.kubernetes\\.io/os"
       value = "linux"
@@ -39,17 +47,6 @@ module "nginx_ingress" {
     {
       name  = "controller.service.annotations.service\\.beta\\.kubernetes\\.io/azure-load-balancer-health-probe-request-path"
       value = "/healthz"
-
-    },
-    {
-      name  = "controller.ingressClassResource.default"
-      value = "true"
-    },
-    {
-      # To overcome 1m size limit of https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/configmap/#proxy-body-size
-      # Setting size to 0 disables checking of client request body size
-      name  = "controller.config.proxy-body-size"
-      value = 0
     }
   ]
 }

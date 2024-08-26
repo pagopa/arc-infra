@@ -52,15 +52,22 @@ module "aks" {
   #
   # ☁️ Network
   #
-  vnet_id                 = data.azurerm_virtual_network.vnet.id
-  vnet_subnet_id          = module.aks_snet.id
+  vnet_id             = data.azurerm_virtual_network.vnet.id
+  vnet_subnet_id      = module.aks_snet_system.id
+  vnet_user_subnet_id = module.aks_snet_user.id
+
   outbound_ip_address_ids = azurerm_public_ip.aks_outbound.*.id
   private_cluster_enabled = var.aks_private_cluster_is_enabled
 
   network_profile = {
-    network_plugin = "azure"
-    network_policy = "azure"
-    outbound_type  = "loadBalancer"
+    docker_bridge_cidr  = "172.17.0.1/16"
+    dns_service_ip      = "10.0.0.10"
+    network_plugin      = "azure"
+    network_plugin_mode = "overlay"
+    network_data_plane  = "cilium"
+    network_policy      = "cilium"
+    outbound_type       = "loadBalancer"
+    service_cidr        = "10.0.0.0/16"
   }
 
   # Iam
@@ -73,6 +80,8 @@ module "aks" {
   addon_azure_policy_enabled                     = true
   addon_azure_key_vault_secrets_provider_enabled = true
   addon_azure_pod_identity_enabled               = true
+  oidc_issuer_enabled                            = true
+  workload_identity_enabled                      = true
 
   custom_metric_alerts = null
   alerts_enabled       = var.aks_alerts_enabled

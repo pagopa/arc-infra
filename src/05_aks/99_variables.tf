@@ -61,9 +61,14 @@ variable "aks_sku_tier" {
   description = "The SKU Tier that should be used for this Kubernetes Cluster. Possible values are Free and Paid (which includes the Uptime SLA)."
 }
 
-variable "aks_cidr_subnet" {
+variable "aks_cidr_system_subnet" {
   type        = list(string)
-  description = "Aks network address space."
+  description = "Aks system network address space."
+}
+
+variable "aks_cidr_user_subnet" {
+  type        = list(string)
+  description = "Aks user network address space."
 }
 
 variable "aks_kubernetes_version" {
@@ -131,25 +136,15 @@ variable "nginx_ingress_helm_version" {
   description = "Nginx ingress helm version https://github.com/kubernetes/ingress-nginx"
 }
 
-variable "keda_helm" {
-  type = object({
-    chart_version = string,
-    keda = object({
-      image_name = string,
-      image_tag  = string,
-    }),
-    metrics_api_server = object({
-      image_name = string,
-      image_tag  = string,
-    }),
-  })
-  description = "keda helm chart configuration"
+variable "keda_helm_chart_version" {
+  type        = string
+  description = "keda helm chart version"
 }
 
 # DNS
-variable "dns_zone_internal_prefix" {
+
+variable "dns_zone_prefix" {
   type        = string
-  default     = null
   description = "The dns subdomain."
 }
 
