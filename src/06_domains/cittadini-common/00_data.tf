@@ -18,11 +18,16 @@ data "azurerm_log_analytics_workspace" "log_analytics" {
   resource_group_name = local.monitor_resource_group_name
 }
 
+data "azurerm_application_insights" "application_insights" {
+  name                = local.application_insights_name
+  resource_group_name = local.monitor_resource_group_name
+}
+
 #
 # 🔐 KV
 #
 
-data "azurerm_key_vault" "key_vault_domain" {
+data "azurerm_key_vault" "key_vault" {
   name                = local.kv_domain_name
   resource_group_name = local.kv_domain_rg_name
 }
