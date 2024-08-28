@@ -64,11 +64,6 @@ variable "dns_zone_prefix" {
   description = "The dns subdomain."
 }
 
-variable "dns_zone_internal_prefix" {
-  type        = string
-  description = "The dns subdomain."
-}
-
 # AKS
 variable "k8s_kube_config_path_prefix" {
   type    = string

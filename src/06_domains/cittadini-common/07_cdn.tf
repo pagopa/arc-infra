@@ -27,12 +27,12 @@ module "cittadini_cdn" {
   error_404_document         = "index.html"
   log_analytics_workspace_id = local.log_analytics_workspace_id
 
-  keyvault_id                                      = local.kv_core_id
+  keyvault_id                                      = local.kv_domain_id
   tenant_id                                        = local.tenant_id
   azuread_service_principal_azure_cdn_frontdoor_id = var.azuread_service_principal_azure_cdn_frontdoor_id
-  keyvault_resource_group_name                     = local.kv_core_rg_name
+  keyvault_resource_group_name                     = local.kv_domain_rg_name
   keyvault_subscription_id                         = local.subscription_id
-  keyvault_vault_name                              = local.kv_core_name
+  keyvault_vault_name                              = local.kv_domain_name
   custom_hostname_kv_enabled                       = true
 
   delivery_rule_rewrite = concat(
@@ -43,7 +43,7 @@ module "cittadini_cdn" {
         {
           condition_type   = "url_path_condition"
           operator         = "Equal"
-          match_values     = ["/"]
+          match_values     = ["/payments"]
           negate_condition = false
           transforms       = null
         },
@@ -56,7 +56,7 @@ module "cittadini_cdn" {
         }
       ]
       url_rewrite_action = {
-        source_pattern          = "/"
+        source_pattern          = "/payments"
         destination             = "/index.html"
         preserve_unmatched_path = false
       }

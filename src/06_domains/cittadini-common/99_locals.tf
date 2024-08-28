@@ -20,6 +20,7 @@ locals {
   #
   # 🖥️ Monitor
   #
+  application_insights_name    = "${local.project_core}-appinsights"
   monitor_resource_group_name  = "${local.project_core}-monitor-rg"
   log_analytics_workspace_name = "${local.project_core}-law"
   log_analytics_workspace_id   = data.azurerm_log_analytics_workspace.log_analytics.id
@@ -27,9 +28,9 @@ locals {
   #
   # 🔐 KV
   #
-  kv_domain_name    = "${local.project}-kv"
+  kv_domain_id      = data.azurerm_key_vault.key_vault.id
+  kv_domain_name    = "${local.product}-${var.location_short}-${var.domain}-kv"
   kv_domain_rg_name = "${local.project}-sec-rg"
-  kv_domain_id      = data.azurerm_key_vault.key_vault_domain.id
 
   kv_core_name    = "${local.project_core}-kv"
   kv_core_rg_name = "${local.project_core}-sec-rg"
@@ -45,5 +46,8 @@ locals {
   #
   # 📜 Certificate
   #
-  kv_ingress_certificate_name = "citizen.${var.dns_zone_internal_prefix}.${var.external_domain}"
+  kv_ingress_certificate_name = "citizen.${local.internal_dns_zone_name}"
+
+  # DNS
+  internal_dns_zone_name = "internal.${var.dns_zone_prefix}.${var.external_domain}"
 }
