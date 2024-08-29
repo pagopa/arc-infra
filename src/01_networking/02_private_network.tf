@@ -2,7 +2,7 @@
 # Private DNS Zone
 #
 
-# ->> DNS private: internal.ENV.p4pa.pagopa.it
+# ->> DNS private: internal.ENV.cittadini.pagopa.it
 
 resource "azurerm_private_dns_zone" "internal_pagopa_it" {
   name                = "${var.dns_zone_internal_prefix}.${var.external_domain}"

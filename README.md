@@ -1,8 +1,8 @@
 # arc-infra
 
-[![Static Analysis](https://github.com/pagopa/p4pa-infra/actions/workflows/static_analysis.yml/badge.svg?branch=main&event=push)](https://github.com/pagopa/p4pa-infra/actions/workflows/static_analysis.yml)
+[![Static Analysis](https://github.com/pagopa/arc-infra/actions/workflows/static_analysis.yml/badge.svg?branch=main&event=push)](https://github.com/pagopa/arc-infra/actions/workflows/static_analysis.yml)
 
-p4pa project infrastructure
+Arc (Area Riservata Cittadino) project infrastructure
 
 ## Requirements
 

@@ -23,7 +23,7 @@ apim_alerts_enabled = false
 
 # DNS
 external_domain = "pagopa.it"
-dns_zone_prefix = "dev.cittadini-p4pa"
+dns_zone_prefix = "dev.cittadini"
 
 # APPGW
 app_gateway_sku_name       = "Standard_v2"
