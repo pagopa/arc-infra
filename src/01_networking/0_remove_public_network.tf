@@ -46,3 +46,15 @@ resource "azurerm_private_dns_zone" "internal_pagopa_it_old" {
     local.tags_for_private_dns
   )
 }
+
+# application gateway records
+resource "azurerm_dns_a_record" "dns_a_apim_old" {
+  for_each = toset(["api", "portal", "management"])
+
+  name                = each.key
+  zone_name           = azurerm_dns_zone.public_old[0].name
+  resource_group_name = azurerm_resource_group.rg_vnet.name
+  ttl                 = var.dns_default_ttl_sec
+  records             = [azurerm_public_ip.appgateway_public_ip.ip_address]
+  tags                = var.tags
+}
