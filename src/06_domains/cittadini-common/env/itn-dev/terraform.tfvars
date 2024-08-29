@@ -16,9 +16,8 @@ tags = {
 }
 
 ## Domains
-external_domain          = "pagopa.it"
-dns_zone_prefix          = "dev.cittadini"
-dns_zone_internal_prefix = "internal.dev.cittadini"
+external_domain = "pagopa.it"
+dns_zone_prefix = "dev.cittadini"
 
 # this is the default value for tenant pagopa.it
 azuread_service_principal_azure_cdn_frontdoor_id = "f3b3f72f-4770-47a5-8c1e-aa298003be12"
