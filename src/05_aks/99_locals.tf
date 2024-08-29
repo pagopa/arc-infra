@@ -21,7 +21,7 @@ locals {
   docker_registry_name = replace("${local.project_core}-common-acr", "-", "")
 
   # DNS
-  internal_dns_zone_name                = "${var.dns_zone_internal_prefix}.cittadini-p4pa.${var.external_domain}"
+  internal_dns_zone_name                = "${var.dns_zone_internal_prefix}.cittadini.${var.external_domain}"
   internal_dns_zone_resource_group_name = "${local.project_core}-vnet-rg"
   ingress_hostname_prefix               = "citizen"
 }
