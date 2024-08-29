@@ -43,7 +43,7 @@ module "cittadini_cdn" {
         {
           condition_type   = "url_path_condition"
           operator         = "Equal"
-          match_values     = ["/payments"]
+          match_values     = ["/pagamenti"]
           negate_condition = false
           transforms       = null
         },
@@ -56,7 +56,7 @@ module "cittadini_cdn" {
         }
       ]
       url_rewrite_action = {
-        source_pattern          = "/payments"
+        source_pattern          = "/pagamenti"
         destination             = "/index.html"
         preserve_unmatched_path = false
       }
