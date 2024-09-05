@@ -30,6 +30,6 @@ resource "kubernetes_config_map" "assistance" {
   data = {
     assistance-arc-zendesk-product-id   = "prod-arc"
     assistance-arc-zendesk-organization = "_users_hc_arc"
-    arc-help-center-url                 = " https://portalearc.zendesk.com/hc/it/requests/new"
+    arc-help-center-url                 = "https://portalearc.zendesk.com/hc/it/requests/new"
   }
 }
