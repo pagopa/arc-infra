@@ -63,3 +63,10 @@ variable "gpd_payments_pull_base_url" {
   type        = string
   description = "Url of pagopa payments pull api"
 }
+
+variable "bizevents_paids_base_url" {
+  type        = string
+  description = "Url of pagopa bizevents paids api"
+}
+
+
