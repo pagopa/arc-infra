@@ -36,6 +36,7 @@
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_bizevents_base_url"></a> [bizevents\_base\_url](#input\_bizevents\_base\_url) | Url of pagopa bizevents api | `string` | n/a | yes |
+| <a name="input_bizevents_paids_base_url"></a> [bizevents\_paids\_base\_url](#input\_bizevents\_paids\_base\_url) | Url of pagopa bizevents paids api | `string` | n/a | yes |
 | <a name="input_domain"></a> [domain](#input\_domain) | n/a | `string` | n/a | yes |
 | <a name="input_env"></a> [env](#input\_env) | Environment | `string` | n/a | yes |
 | <a name="input_env_short"></a> [env\_short](#input\_env\_short) | n/a | `string` | n/a | yes |
