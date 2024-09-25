@@ -37,7 +37,6 @@ data "azurerm_key_vault" "key_vault_core" {
   resource_group_name = local.kv_core_rg_name
 }
 
-
 data "azurerm_kubernetes_cluster" "aks" {
   name                = local.aks_name
   resource_group_name = local.aks_resource_group_name
