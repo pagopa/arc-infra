@@ -32,6 +32,6 @@ provider "kubernetes" {
 }
 
 module "__v3__" {
-  # https://github.com/pagopa/terraform-azurerm-v3/releases/tag/v8.44.1
-  source = "git::https://github.com/pagopa/terraform-azurerm-v3.git?ref=a23a38ba5f07f1afe454f17e6782f89f29956b96"
+  # https://github.com/pagopa/terraform-azurerm-v3/releases/tag/v8.44.3
+  source = "git::https://github.com/pagopa/terraform-azurerm-v3.git?ref=0f56b317a80fae3911fef0d4a5163e5921154f74"
 }

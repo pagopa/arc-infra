@@ -1,4 +1,3 @@
-#tfsec:ignore:azure-keyvault-ensure-secret-expiry
 module "workload_identity" {
   source = "./.terraform/modules/__v3__/kubernetes_workload_identity_configuration"
 
