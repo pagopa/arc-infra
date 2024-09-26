@@ -21,6 +21,7 @@ resource "azurerm_key_vault_secret" "aks_apiserver_url" {
 
 module "domain_pod_identity" {
   source = "./.terraform/modules/__v3__/kubernetes_pod_identity"
+  count  = var.env_short == "u" ? 1 : 0 # Awaiting merge https://github.com/pagopa/arc-be/pull/106
 
   resource_group_name = local.aks_resource_group_name
   location            = var.location
