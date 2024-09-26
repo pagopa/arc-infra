@@ -43,11 +43,4 @@ locals {
   tenant_id       = data.azurerm_subscription.current.tenant_id
   subscription_id = data.azurerm_subscription.current.subscription_id
 
-  #
-  # 📜 Certificate
-  #
-  kv_ingress_certificate_name = "citizen.${local.internal_dns_zone_name}"
-
-  # DNS
-  internal_dns_zone_name = "internal.${var.dns_zone_prefix}.${var.external_domain}"
 }
