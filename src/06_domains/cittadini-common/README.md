@@ -22,7 +22,6 @@
 |------|--------|---------|
 | <a name="module___v3__"></a> [\_\_v3\_\_](#module\_\_\_v3\_\_) | git::https://github.com/pagopa/terraform-azurerm-v3.git | ab2cf6a43414f2cc80a9e51332182c26ad970f72 |
 | <a name="module_cittadini_cdn"></a> [cittadini\_cdn](#module\_cittadini\_cdn) | ./.terraform/modules/__v3__/cdn/ | n/a |
-| <a name="module_domain_pod_identity"></a> [domain\_pod\_identity](#module\_domain\_pod\_identity) | ./.terraform/modules/__v3__/kubernetes_pod_identity | n/a |
 | <a name="module_jwt"></a> [jwt](#module\_jwt) | ./.terraform/modules/__v3__/jwt_keys | n/a |
 | <a name="module_kubernetes_service_account"></a> [kubernetes\_service\_account](#module\_kubernetes\_service\_account) | ./.terraform/modules/__v3__/kubernetes_service_account | n/a |
 | <a name="module_workload_identity"></a> [workload\_identity](#module\_workload\_identity) | ./.terraform/modules/__v3__/kubernetes_workload_identity_init | n/a |
