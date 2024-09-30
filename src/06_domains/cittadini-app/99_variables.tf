@@ -27,6 +27,11 @@ variable "location" {
   type = string
 }
 
+variable "location_string" {
+  type        = string
+  description = "One of West Europe, North Europe"
+}
+
 variable "location_short" {
   type        = string
   description = "Location short like eg: neu, weu.."
@@ -67,6 +72,17 @@ variable "gpd_payments_pull_base_url" {
 variable "bizevents_paids_base_url" {
   type        = string
   description = "Url of pagopa bizevents paids api"
+}
+
+# Domains
+variable "external_domain" {
+  type        = string
+  description = "Domain for delegation"
+}
+
+variable "dns_zone_prefix" {
+  type        = string
+  description = "The dns subdomain."
 }
 
 
