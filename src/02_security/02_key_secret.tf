@@ -1,17 +1,9 @@
-#tfsec:ignore:azure-keyvault-ensure-key-expiry
-resource "azurerm_key_vault_key" "generated" {
-  name         = "${local.project}-sops-key"
-  key_vault_id = module.key_vault.id
-  key_type     = "RSA"
-  key_size     = 2048
-
-  key_opts = [
-    "decrypt",
-    "encrypt",
-  ]
+moved {
+  from = data.external.external2
+  to   = data.external.terrasops
 }
 
-data "external" "external" {
+data "external" "terrasops" {
   program = [
     "bash", "terrasops.sh"
   ]
@@ -22,12 +14,12 @@ data "external" "external" {
 }
 
 locals {
-  all_enc_secrets_value = flatten([
-    for k, v in data.external.external.result : {
+  all_enc_secrets_value = can(data.external.terrasops.result) ? flatten([
+    for k, v in data.external.terrasops.result : {
       valore = v
       chiave = k
     }
-  ])
+  ]) : []
 
   config_secret_data = jsondecode(file(var.input_file))
   all_config_secrets_value = flatten([
@@ -40,6 +32,7 @@ locals {
   all_secrets_value = concat(local.all_config_secrets_value, local.all_enc_secrets_value)
 }
 
+## SOPS secrets
 
 ## Upload all encrypted secrets
 resource "azurerm_key_vault_secret" "secret" {
@@ -51,7 +44,5 @@ resource "azurerm_key_vault_secret" "secret" {
 
   depends_on = [
     module.key_vault,
-    azurerm_key_vault_key.generated,
-    data.external.external
   ]
 }
