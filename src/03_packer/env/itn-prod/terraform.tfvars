@@ -1,13 +1,13 @@
 prefix         = "arc"
-env_short      = "d"
-env            = "dev"
+env_short      = "p"
+env            = "prod"
 location       = "italynorth"
 location_short = "itn"
 domain         = "packer"
 
 tags = {
   CreatedBy   = "Terraform"
-  Environment = "DEV"
+  Environment = "PROD"
   Owner       = "ARC"
   Source      = "https://github.com/pagopa/arc-infra"
   CostCenter  = "TS310 - PAGAMENTI & SERVIZI"
