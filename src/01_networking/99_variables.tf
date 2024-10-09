@@ -121,6 +121,12 @@ variable "dns_default_ttl_sec" {
   default     = 3600
 }
 
+
+variable "dns_forwarder_image_version" {
+  type        = string
+  description = "Version string to allow to force the creation of the image"
+}
+
 #
 # General Common
 #

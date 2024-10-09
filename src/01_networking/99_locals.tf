@@ -6,7 +6,7 @@ locals {
   tags_for_private_dns = { "PrivateDns" = "true" }
 
   # Dns Forwarder
-  dns_forwarder_vm_image_name = "${local.product_nodomain}-packer-dns-forwarder-ubuntu2204-image-v1"
+  dns_forwarder_vm_image_name = "${local.product_nodomain}-packer-dns-forwarder-ubuntu2204-image-${var.dns_forwarder_image_version}"
 
   key_vault_id_core = data.azurerm_key_vault.key_vault.id
 
