@@ -32,6 +32,7 @@ cidr_subnet_appgateway = ["10.1.130.0/24"]  # 10.1.130.0 --> 10.1.130.255
 # DNS
 #
 
-external_domain          = "pagopa.it"
-dns_zone_prefix          = "dev.cittadini"
-dns_zone_internal_prefix = "internal.dev.cittadini"
+external_domain             = "pagopa.it"
+dns_zone_prefix             = "dev.cittadini"
+dns_zone_internal_prefix    = "internal.dev.cittadini"
+dns_forwarder_image_version = "v1"
