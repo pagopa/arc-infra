@@ -1,5 +1,5 @@
 resource "azurerm_resource_group" "sec_rg" {
-  name     = "${local.project}-sec-rg"
+  name     = "${local.product_nodomain}-core-sec-rg"
   location = var.location
 
   tags = var.tags
@@ -10,9 +10,9 @@ resource "azurerm_resource_group" "sec_rg" {
 #
 
 module "key_vault" {
-  source = "./.terraform/modules/__v3__/key_vault/"
+  source = "./.terraform/modules/__v3__/key_vault"
 
-  name                          = "${local.project}-kv"
+  name                          = "${local.product_nodomain}-core-kv"
   location                      = azurerm_resource_group.sec_rg.location
   resource_group_name           = azurerm_resource_group.sec_rg.name
   tenant_id                     = data.azurerm_client_config.current.tenant_id
@@ -23,7 +23,7 @@ module "key_vault" {
 }
 
 ## ad group policy ##
-resource "azurerm_key_vault_access_policy" "adgroup_admins_policy" {
+resource "azurerm_key_vault_access_policy" "ad_group_policy" {
   key_vault_id = module.key_vault.id
 
   tenant_id = data.azurerm_client_config.current.tenant_id
@@ -65,20 +65,4 @@ resource "azurerm_key_vault_access_policy" "adgroup_externals_policy" {
   secret_permissions      = ["Get", "List", "Set", "Delete"]
   storage_permissions     = []
   certificate_permissions = ["Get", "List"]
-}
-
-
-resource "azurerm_key_vault_access_policy" "azdevops_iac_managed_identities" {
-  for_each = local.azdo_iac_managed_identities
-
-  key_vault_id = module.key_vault.id
-  tenant_id    = data.azurerm_client_config.current.tenant_id
-  object_id    = data.azurerm_user_assigned_identity.iac_federated_azdo[each.key].principal_id
-
-  key_permissions    = ["Get", "List", "Decrypt", "Verify", "GetRotationPolicy"]
-  secret_permissions = ["Get", "List", "Set", ]
-
-  certificate_permissions = ["SetIssuers", "DeleteIssuers", "Purge", "List", "Get"]
-
-  storage_permissions = []
 }
