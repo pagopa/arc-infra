@@ -44,7 +44,7 @@ resource "azurerm_key_vault_access_policy" "adgroup_developers_policy" {
   tenant_id = local.tenant_id
   object_id = data.azuread_group.adgroup_developers.object_id
 
-  key_permissions     = ["Get", "List", "Update", "Create", "Import", "Delete", ]
+  key_permissions     = ["Get", "List", "Update", "Create", "Import", "Delete", "Encrypt", "Decrypt"]
   secret_permissions  = ["Get", "List", "Set", "Delete", ]
   storage_permissions = []
   certificate_permissions = [
@@ -61,7 +61,7 @@ resource "azurerm_key_vault_access_policy" "adgroup_externals_policy" {
   tenant_id = local.tenant_id
   object_id = data.azuread_group.adgroup_externals.object_id
 
-  key_permissions         = ["Get", "List", ]
+  key_permissions         = ["Get", "List", "Encrypt", "Decrypt"]
   secret_permissions      = ["Get", "List", "Set", "Delete", ]
   storage_permissions     = []
   certificate_permissions = ["Get", "List"]
