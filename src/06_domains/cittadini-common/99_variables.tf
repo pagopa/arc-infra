@@ -76,3 +76,18 @@ variable "azuread_service_principal_azure_cdn_frontdoor_id" {
   description = "Azure CDN Front Door Principal ID - Microsoft.AzureFrontDoor-Cdn"
 }
 
+# Redis
+variable "cidr_subnet_redis" {
+  type        = list(string)
+  description = "Redis network address space."
+}
+
+# Redis
+variable "redis_params" {
+  type = object({
+    capacity = number
+    sku_name = string
+    family   = string
+    version  = string
+  })
+}
