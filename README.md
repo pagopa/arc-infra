@@ -1,68 +1,23 @@
-# arc-infra
-
-[![Static Analysis](https://github.com/pagopa/arc-infra/actions/workflows/static_analysis.yml/badge.svg?branch=main&event=push)](https://github.com/pagopa/arc-infra/actions/workflows/static_analysis.yml)
-
-Arc (Area Riservata Cittadino) project infrastructure
-
 ## Requirements
 
-### 1. terraform
+No requirements.
 
-In order to manage the suitable version of terraform it is strongly recommended to install the following tool:
+## Providers
 
-- [tfenv](https://github.com/tfutils/tfenv): **Terraform** version manager inspired by rbenv.
+No providers.
 
-Once these tools have been installed, install the terraform version shown in:
+## Modules
 
-- .terraform-version
+No modules.
 
-After installation install terraform:
+## Resources
 
-```sh
-tfenv install
-```
+No resources.
 
-## Environment management
+## Inputs
 
-In order to properly populate terraform variables for each environment, a script located at `scripts/terraform.sh` is provided.
+No inputs.
 
-Terraform invocations described here where environent parameters are required can be replaced with invocations to `terraform.sh` by passing an environment specification. For example:
+## Outputs
 
-```sh
-./terraform.sh plan itn-dev
-```
-
-**NOTE**: `terraform.sh` must be run from the project folder.
-
-## Terraform modules
-
-As PagoPA we build our standard Terraform modules, check available modules:
-
-- [PagoPA Terraform modules](https://github.com/search?q=topic%3Aterraform-modules+org%3Apagopa&type=repositories)
-
-## Terraform lock.hcl
-
-We have both developers who work with your Terraform configuration on their Linux, macOS or Windows workstations and automated systems that apply the configuration while running on Linux.
-<https://www.terraform.io/docs/cli/commands/providers/lock.html#specifying-target-platforms>
-
-So we need to specify this in terraform lock providers:
-
-```sh
-terraform init
-
-terraform providers lock \
-  -platform=linux_arm64 \
-  -platform=linux_amd64 \
-  -platform=darwin_amd64 \
-  -platform=windows_amd64
-```
-
-## Precommit checks
-
-Check your code before commit.
-
-<https://github.com/antonbabenko/pre-commit-terraform#how-to-install>
-
-```sh
-pre-commit run -a
-```
+No outputs.
