@@ -408,6 +408,7 @@
                     "version": "KqlItem/1.0",
                     "query": "let startTime = {timeRangeOverall:start};\r\nlet endTime = {timeRangeOverall:end};\r\nlet interval = totimespan({timeSpan:label});\r\n\r\nlet data = requests\r\n| where timestamp between (startTime .. endTime) and operation_Name has \"arc\";\r\nlet unknowApi = data\r\n| join kind=inner exceptions on operation_Id\r\n| where type has \"OperationNotFound\";\r\nlet totalRequestCount = toscalar (data\r\n| count);\r\nlet joinedUnknowApi = unknowApi\r\n| summarize\r\n        Count = count(),\r\n        Users = dcount(tostring(customDimensions[\"Request-X-Forwarded-For\"]))\r\n        by operation_Name, resultCode, type\r\n| project \r\n        ['Request Name'] = operation_Name,\r\n        ['Result Code'] = resultCode,\r\n        ['Total Response'] = Count,\r\n        ['Rate (% of total requests)'] = (Count * 100) / totalRequestCount,\r\n        ['Users Affected'] = Users,\r\n        ['Type'] = type;\r\nunion joinedUnknowApi",
                     "size": 1,
+                    "showAnalytics": true,
                     "title": "Operation Not Found",
                     "timeContextFromParameter": "timeRangeOverall",
                     "queryType": 0,
@@ -601,6 +602,7 @@
               "version": "KqlItem/1.0",
               "query": "let startTime = {timeRangeOverall:start};\r\nlet endTime = {timeRangeOverall:end};\r\n\r\ndependencies\r\n| where timestamp between (startTime .. endTime)\r\n| where cloud_RoleName startswith \"pagopaarcbe\"\r\n| where data has (\"{externalService}\")\r\n| summarize total=count() by bin(timestamp,1m), operation_Name\r\n| render timechart",
               "size": 0,
+              "showAnalytics": true,
               "title": "Number of calls to the external service \" bizEvents \" divided by API",
               "timeContextFromParameter": "timeRangeOverall",
               "queryType": 0,
@@ -676,6 +678,7 @@
                 }
               ],
               "title": "Avg Process CPU by Cloud Role Instance",
+              "showOpenInMe": true,
               "gridSettings": {
                 "rowLimit": 10000
               }
@@ -715,6 +718,7 @@
                 }
               ],
               "title": "Available Memory by Cloud Role Instance",
+              "showOpenInMe": true,
               "gridSettings": {
                 "rowLimit": 10000
               }
