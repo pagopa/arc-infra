@@ -7,6 +7,12 @@ locals {
   ]
 }
 
+resource "azurerm_resource_group" "workbook_rg" {
+  name     = "${local.project}-workbook-rg"
+  location = var.location
+  tags     = var.tags
+}
+
 resource "azurerm_application_insights_workbook" "cittadini_workbook" {
   for_each = {
     for index, workbook in local.workbooks :
@@ -14,8 +20,8 @@ resource "azurerm_application_insights_workbook" "cittadini_workbook" {
   }
 
   name                = uuidv5("oid", each.value.name)
-  resource_group_name = data.azurerm_resource_group.workbook_rg.name
-  location            = data.azurerm_resource_group.workbook_rg.location
+  resource_group_name = azurerm_resource_group.workbook_rg.name
+  location            = azurerm_resource_group.workbook_rg.location
   display_name        = each.value.name
   data_json = templatefile(each.value.filePath,
     {
@@ -28,7 +34,7 @@ resource "azurerm_application_insights_workbook" "cittadini_workbook" {
   })
 
   tags = {
-    ENV = var.env
+    ENV = var.tags
   }
 
 }

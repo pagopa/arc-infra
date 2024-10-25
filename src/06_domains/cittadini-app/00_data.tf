@@ -43,7 +43,3 @@ data "azurerm_key_vault_secret" "appinsights_connection_string" {
   name         = "appinsights-connection-string"
   key_vault_id = local.kv_domain_id
 }
-
-data "azurerm_resource_group" "workbook_rg" {
-  name = "${local.project_core}-monitor-rg"
-}
