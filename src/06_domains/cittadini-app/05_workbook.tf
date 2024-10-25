@@ -33,8 +33,8 @@ resource "azurerm_application_insights_workbook" "cittadini_workbook" {
       location_short  = var.location_short
   })
 
-  tags = {
-    ENV = var.tags
-  }
+  tags = merge(
+    var.tags
+  )
 
 }
