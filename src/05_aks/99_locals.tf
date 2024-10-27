@@ -24,4 +24,11 @@ locals {
   internal_dns_zone_name                = "internal.${var.dns_zone_prefix}.${var.external_domain}"
   internal_dns_zone_resource_group_name = "${local.project_core}-vnet-rg"
   ingress_hostname_prefix               = "citizen"
+
+  ### KV
+  kv_core_name = "arc-${var.env_short}-itn-core-kv"
+  kv_core_rg_name = "arc-${var.env_short}-itn-core-sec-rg"
+
+  ### ARGOCD
+  argocd_internal_url = "argocd.internal.${var.dns_zone_prefix}.${var.external_domain}"
 }

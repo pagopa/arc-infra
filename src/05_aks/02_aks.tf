@@ -80,6 +80,7 @@ module "aks" {
   addon_azure_policy_enabled                     = true
   addon_azure_key_vault_secrets_provider_enabled = true
   addon_azure_pod_identity_enabled               = true
+
   oidc_issuer_enabled                            = true
   workload_identity_enabled                      = true
 
