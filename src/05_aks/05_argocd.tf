@@ -18,18 +18,16 @@ resource "helm_release" "argocd" {
   wait      = false
 
   values = [
-    file("argocd/argocd_helm_setup_values.yaml")
+    templatefile("argocd/argocd_helm_setup_values.yaml", {
+      ARGOCD_INTERNAL_URL = local.argocd_internal_url
+      ARGOCD_TLS_CERT_NAME = replace(local.argocd_internal_url, ".", "-")
+    }
+    )
   ]
 
   depends_on = [
     module.aks
   ]
-}
-
-resource "azurerm_key_vault_secret" "argocd_admin_username" {
-  key_vault_id = data.azurerm_key_vault.kv_core_ita.id
-  name         = "argocd-admin-username"
-  value        = "admin"
 }
 
 data "azurerm_key_vault_secret" "argocd_admin_password" {
@@ -106,4 +104,16 @@ resource "helm_release" "reloader_argocd" {
     name  = "reloader.watchGlobally"
     value = "false"
   }
+}
+
+#
+# DNS private - Records
+#
+
+resource "azurerm_private_dns_a_record" "argocd" {
+  name                = "argocd"
+  zone_name           = data.azurerm_private_dns_zone.internal.name
+  resource_group_name = local.internal_dns_zone_resource_group_name
+  ttl                 = 3600
+  records             = [local.ingress_load_balancer_ip]
 }

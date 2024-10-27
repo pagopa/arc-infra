@@ -13,16 +13,16 @@ server:
     enabled: true
     labels: {}
     ingressClassName: "nginx"
-    hostname: argocd.internal.devopslab.pagopa.it
+    hostname: ${ARGOCD_INTERNAL_URL}
 
     annotations:
       nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
       nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
     extraTls:
       - hosts:
-        - argocd.internal.devopslab.pagopa.it
+        - ${ARGOCD_INTERNAL_URL}
         # Based on the ingress controller used secret might be optional
-        secretName: argocd-internal-devopslab-pagopa-it
+        secretName: ${ARGOCD_TLS_CERT_NAME}
     https: true
 redis-ha:
   enabled: false
