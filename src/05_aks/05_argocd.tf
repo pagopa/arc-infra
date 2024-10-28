@@ -19,9 +19,9 @@ resource "helm_release" "argocd" {
 
   values = [
     templatefile("argocd/argocd_helm_setup_values.yaml", {
-      ARGOCD_INTERNAL_URL = local.argocd_internal_url
+      ARGOCD_INTERNAL_URL  = local.argocd_internal_url
       ARGOCD_TLS_CERT_NAME = replace(local.argocd_internal_url, ".", "-")
-    }
+      }
     )
   ]
 
@@ -50,7 +50,7 @@ resource "null_resource" "argocd_change_admin_password" {
 # tools
 #
 module "argocd_workload_identity_init" {
-    source = "./.terraform/modules/__v3__/kubernetes_workload_identity_init"
+  source = "./.terraform/modules/__v3__/kubernetes_workload_identity_init"
 
 
   workload_identity_name_prefix         = "argocd"
@@ -59,7 +59,7 @@ module "argocd_workload_identity_init" {
 }
 
 module "argocd_workload_identity_configuration" {
-      source = "./.terraform/modules/__v3__/kubernetes_workload_identity_configuration"
+  source = "./.terraform/modules/__v3__/kubernetes_workload_identity_configuration"
 
 
   workload_identity_name_prefix         = "argocd"
@@ -77,7 +77,7 @@ module "argocd_workload_identity_configuration" {
 }
 
 module "cert_mounter_argocd_internal" {
-        source = "./.terraform/modules/__v3__/cert_mounter"
+  source = "./.terraform/modules/__v3__/cert_mounter"
 
   namespace        = "argocd"
   certificate_name = replace(local.argocd_internal_url, ".", "-")

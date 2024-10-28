@@ -26,7 +26,7 @@ locals {
   ingress_hostname_prefix               = "citizen"
 
   ### KV
-  kv_core_name = "arc-${var.env_short}-itn-core-kv"
+  kv_core_name    = "arc-${var.env_short}-itn-core-kv"
   kv_core_rg_name = "arc-${var.env_short}-itn-core-sec-rg"
 
   ### ARGOCD
