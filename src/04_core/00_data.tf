@@ -88,3 +88,10 @@ data "azurerm_resource_group" "sec_rg" {
 data "azurerm_resource_group" "azdo_rg" {
   name = "${local.product}-${var.location_short}-packer-azdoa-rg"
 }
+
+### AD
+data "azurerm_user_assigned_identity" "iac_federated_azdo" {
+  for_each            = local.azdo_iac_managed_identities
+  name                = each.key
+  resource_group_name = local.azdo_managed_identity_rg_name
+}
