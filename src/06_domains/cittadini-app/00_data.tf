@@ -43,3 +43,8 @@ data "azurerm_key_vault_secret" "appinsights_connection_string" {
   name         = "appinsights-connection-string"
   key_vault_id = local.kv_domain_id
 }
+
+data "azurerm_log_analytics_workspace" "log_analytics" {
+  name                = var.log_analytics_workspace_name
+  resource_group_name = var.log_analytics_workspace_resource_group_name
+}
