@@ -28,11 +28,9 @@ resource "azurerm_monitor_scheduled_query_rules_alert_v2" "Availability" {
   criteria {
     query                   = <<-QUERY
       let interval = totimespan(1m);
-
       let tot = AzureDiagnostics
       | where requestUri_s has 'cittadini'
       | summarize tot = todouble(count()) by bin(TimeGenerated, interval);
-
       let errors = AzureDiagnostics
       | where requestUri_s has 'cittadini'
       | where httpStatusCode_s==400 or httpStatusCode_s == 412
