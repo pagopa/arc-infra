@@ -27,17 +27,15 @@ resource "azurerm_monitor_scheduled_query_rules_alert_v2" "Availability" {
   severity             = 0
   criteria {
     query                   = <<-QUERY
-      let startTime = {timeRangeOverall:start};
-      let endTime = {timeRangeOverall:end};
-      let interval = totimespan({timeSpan:label});
+      let interval = totimespan(1m);
 
       let tot = AzureDiagnostics
-      | where TimeGenerated between (startTime .. endTime)
       | where requestUri_s has 'cittadini'
       | summarize tot = todouble(count()) by bin(TimeGenerated, interval);
 
-      let errors = AzureDiagnostics\n| where requestUri_s has 'cittadini'
-      | where strcmp(httpStatusCode_s, \"400\") == 0 or strcmp(httpStatusCode_s, \"412\") > 0
+      let errors = AzureDiagnostics
+      | where requestUri_s has 'cittadini'
+      | where httpStatusCode_s==400 or httpStatusCode_s == 412
       | summarize not_ok = count() by bin(TimeGenerated, interval);
       tot
       | join kind=leftouter errors on TimeGenerated
