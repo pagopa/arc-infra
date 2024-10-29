@@ -18,8 +18,8 @@ law_daily_quota_gb = 10
 
 # Apim
 apim_publisher_name = "ARC PROD"
-apim_sku            = "Premium_1"
-apim_alerts_enabled = false
+apim_sku            = "Developer_1"
+apim_alerts_enabled = true
 
 # DNS
 external_domain = "pagopa.it"
