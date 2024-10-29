@@ -17,7 +17,7 @@ tags = {
 law_daily_quota_gb = 10
 
 # Apim
-apim_publisher_name = "pagoPA Platform DEV"
+apim_publisher_name = "ARC DEV"
 apim_sku            = "Developer_1"
 apim_alerts_enabled = false
 
