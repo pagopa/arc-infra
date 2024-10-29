@@ -23,3 +23,11 @@ data "azurerm_container_registry" "acr" {
   name                = local.docker_registry_name
   resource_group_name = local.docker_rg_name
 }
+
+#
+# Key Vault
+#
+data "azurerm_key_vault" "kv_core_ita" {
+  name                = local.kv_core_name
+  resource_group_name = local.kv_core_rg_name
+}

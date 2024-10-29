@@ -36,6 +36,18 @@ resource "azurerm_private_dns_zone" "key_vault_dns" {
   )
 }
 
+
+# ->> Redis - private dns zone
+resource "azurerm_private_dns_zone" "privatelink_redis_cache_windows_net" {
+  name                = "privatelink.redis.cache.windows.net"
+  resource_group_name = azurerm_resource_group.rg_vnet.name
+
+  tags = merge(
+    var.tags,
+    local.tags_for_private_dns
+  )
+}
+
 resource "azurerm_private_dns_zone_virtual_network_link" "all_to_vnet_core" {
   for_each = { for i, v in data.azurerm_resources.sub_resources.resources : data.azurerm_resources.sub_resources.resources[i].name => v }
 

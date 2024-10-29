@@ -22,7 +22,7 @@ array=(
     'src/05_aks::itn-dev'
     'src/06_domains/cittadini-app::itn-dev'
     'src/06_domains/cittadini-secrets::itn-dev'
-    'src/06_domains/cittadini-common:itn-dev'
+    'src/06_domains/cittadini-common::itn-dev'
 )
 
 function rm_terraform {
@@ -39,7 +39,7 @@ for index in "${array[@]}" ; do
     pushd "$(pwd)/${FOLDER}"
         echo "$FOLDER - $COMMAND"
         echo "🔬 folder: $(pwd) in under terraform: $ACTION action"
-        sh terraform.sh "$ACTION" "$COMMAND"
+        sh terraform.sh "$ACTION" "$COMMAND" &
 
          terraform providers lock \
            -platform=windows_amd64 \

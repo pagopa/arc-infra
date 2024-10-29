@@ -150,6 +150,11 @@ variable "dns_zone_prefix" {
 
 variable "external_domain" {
   type        = string
-  default     = "pagopa.it"
   description = "Domain for delegation"
+}
+
+### ARGO
+variable "argocd_helm_release_version" {
+  type        = string
+  description = "ArgoCD helm chart release version"
 }

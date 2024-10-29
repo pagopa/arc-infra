@@ -7,6 +7,9 @@ locals {
 
   vnet_name                = "${local.product}-${var.location_short}-core-vnet"
   vnet_resource_group_name = "${local.product}-${var.location_short}-core-vnet-rg"
+
+  azdo_managed_identity_rg_name = "${local.project}-identity-rg"
+  azdo_iac_managed_identities   = toset(["azdo-${var.env}-arc-iac-deploy", "azdo-${var.env}-arc-iac-plan"])
 }
 
 #
