@@ -22,8 +22,8 @@ data "azurerm_key_vault" "kv" {
   resource_group_name = "${local.product}-${var.domain}-sec-rg"
 }
 
-data "azurerm_key_vault_secret" "alert-slack-cittadini" {
-  count = var.alert_enabled_cittadini ? 1 : 0
+data "azurerm_key_vault_secret" "alert-slack-arc" {
+  count = var.alert_enabled ? 1 : 0
   name         = "alert-notification-slack"
   key_vault_id = data.azurerm_key_vault.kv.id
 }

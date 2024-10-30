@@ -1,22 +1,21 @@
 resource "azurerm_monitor_action_group" "slack_cittadini" {
-
-  count = var.alert_enabled_cittadini ? 1 : 0
+  count = var.alert_enabled ? 1 : 0
 
   name                = "slack-${var.domain}"
   resource_group_name = data.azurerm_resource_group.monitor_rg.name
-  short_name          = "Slack-Cittad"
+  short_name          = substr("slack-${var.domain}", 0, 12)
 
   email_receiver {
-    name                    = "SlackCittadini"
-    email_address           = data.azurerm_key_vault_secret.alert-slack-cittadini[count.index].value
+    name                    = "slack-${var.domain}"
+    email_address           = data.azurerm_key_vault_secret.alert-slack-arc[count.index].value
     use_common_alert_schema = true
   }
-
+  tags = var.tags
 }
 
 resource "azurerm_monitor_scheduled_query_rules_alert_v2" "Availability" {
+  count               = var.alert_enabled ? 1 : 0
 
-  count               = var.alert_enabled_cittadini ? 1 : 0
   name                = "${local.project}-Availability"
   location            = data.azurerm_resource_group.monitor_rg.location
   resource_group_name = data.azurerm_resource_group.monitor_rg.name
