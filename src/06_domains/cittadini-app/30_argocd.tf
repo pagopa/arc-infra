@@ -64,7 +64,7 @@ resource "argocd_application" "root_cittadini_app" {
     labels = {
       name : "root-${var.domain}-app"
       domain : var.domain
-      is_root: true
+      is_root : true
     }
   }
 
