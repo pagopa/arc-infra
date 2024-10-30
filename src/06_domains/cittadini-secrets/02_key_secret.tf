@@ -11,7 +11,7 @@ resource "azurerm_key_vault_key" "generated" {
   ]
 }
 
-data "external" "external" {
+data "external" "terrasops_sh" {
   program = [
     "bash", "terrasops.sh"
   ]
@@ -23,7 +23,7 @@ data "external" "external" {
 
 locals {
   all_enc_secrets_value = flatten([
-    for k, v in data.external.external.result : {
+    for k, v in data.external.terrasops_sh.result : {
       valore = v
       chiave = k
     }
@@ -57,6 +57,6 @@ resource "azurerm_key_vault_secret" "secret" {
   depends_on = [
     module.key_vault,
     azurerm_key_vault_key.generated,
-    data.external.external
+    data.external.terrasops_sh
   ]
 }
