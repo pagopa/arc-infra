@@ -36,6 +36,6 @@ data "azurerm_key_vault_secret" "appinsights_connection_string" {
 }
 
 data "azurerm_log_analytics_workspace" "log_analytics" {
-  name                = var.log_analytics_workspace_name
-  resource_group_name = var.log_analytics_workspace_resource_group_name
+  name                = local.azurerm_log_analytics_workspace_log_analytics_name
+  resource_group_name = local.azurerm_log_analytics_workspace_log_analytics_resource_group_name
 }
