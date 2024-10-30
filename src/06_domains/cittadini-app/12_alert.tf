@@ -2,7 +2,7 @@ resource "azurerm_monitor_action_group" "slack_cittadini" {
 
   count = var.arc_alert_enabled ? 1 : 0
 
-  name                = "SlackArc"
+  name                = "slack-${var.domain}"
   resource_group_name = data.azurerm_resource_group.monitor_rg.name
   short_name          = "Slack-arc"
 
