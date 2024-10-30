@@ -381,7 +381,7 @@
                   "type": 3,
                   "content": {
                     "version": "KqlItem/1.0",
-                    "query": "let startTime = {timeRangeOverall:start};\nlet endTime = {timeRangeOverall:end};\nlet interval = totimespan({timeSpan:label});\n\nlet tot = AzureDiagnostics\n| where TimeGenerated between (startTime .. endTime) \n| where requestUri_s has 'cittadini'\n| summarize tot = todouble(count()) by bin(TimeGenerated, interval);\nlet errors = AzureDiagnostics\n| where requestUri_s has 'cittadini'\n| where tolong(httpStatusCode_s) > 412\n| summarize not_ok = count() by bin(TimeGenerated, interval);\ntot\n| join kind=leftouter errors on TimeGenerated\n| project TimeGenerated, availability = (tot - coalesce(not_ok, 0))/tot, watermark=0.99",
+                    "query": "let startTime = {timeRangeOverall:start};\nlet endTime = {timeRangeOverall:end};\nlet interval = totimespan({timeSpan:label});\n\nlet tot = AzureDiagnostics\n| where TimeGenerated between (startTime .. endTime) \n| where requestUri_s has 'cittadini'\n| summarize tot = todouble(count()) by bin(TimeGenerated, interval);\nlet errors = AzureDiagnostics\n| where requestUri_s has 'cittadini'\n| where strcmp(httpStatusCode_s, \"412\") > 0 \n| summarize not_ok = count() by bin(TimeGenerated, interval);\ntot\n| join kind=leftouter errors on TimeGenerated\n| project TimeGenerated, availability = (tot - coalesce(not_ok, 0))/tot, watermark=0.99",
                     "size": 0,
                     "aggregation": 3,
                     "showAnalytics": true,
