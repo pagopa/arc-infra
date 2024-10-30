@@ -26,3 +26,6 @@ dns_zone_prefix = "dev.cittadini"
 
 log_analytics_workspace_name = "arc-d-itn-core-law"
 log_analytics_workspace_resource_group_name = "arc-d-itn-core-monitor-rg"
+
+### ARGOCD
+argocd_server_addr = "argocd.internal.dev.cittadini.pagopa.it"
