@@ -23,3 +23,6 @@ bizevents_paids_base_url   = "https://api.dev.platform.pagopa.it/bizevents/notic
 ## Domains
 external_domain = "pagopa.it"
 dns_zone_prefix = "dev.cittadini"
+
+### ARGOCD
+argocd_server_addr = "argocd.internal.dev.cittadini.pagopa.it"

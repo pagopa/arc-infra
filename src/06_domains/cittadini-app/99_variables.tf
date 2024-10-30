@@ -85,4 +85,11 @@ variable "dns_zone_prefix" {
   description = "The dns subdomain."
 }
 
+#
+# ArgoCD
+#
+variable "argocd_server_addr" {
+  type        = string
+  description = "ArgoCD hostname"
+}
 
