@@ -29,15 +29,15 @@ resource "azurerm_monitor_scheduled_query_rules_alert_v2" "Availability" {
     query                   = <<-QUERY
       let interval = totimespan(1m);
       let tot = AzureDiagnostics
-      | where requestUri_s has 'cittadini'
-      | summarize tot = todouble(count()) by bin(TimeGenerated, interval);
+          | where requestUri_s has 'cittadini'
+          | summarize tot = todouble(count()) by bin(TimeGenerated, interval);
       let errors = AzureDiagnostics
-      | where requestUri_s has 'cittadini'
-      | where httpStatusCode_s==400 or httpStatusCode_s == 412
-      | summarize not_ok = count() by bin(TimeGenerated, interval);
+          | where requestUri_s has 'cittadini'
+          | where httpStatusCode_d > 412
+          | summarize not_ok = count() by bin(TimeGenerated, interval);
       tot
       | join kind=leftouter errors on TimeGenerated
-      | project TimeGenerated, availability = (tot - coalesce(not_ok, 0))/tot, watermark=0.99
+      | project TimeGenerated, availability = (tot - coalesce(not_ok, 0)) / tot, watermark=0.99
       QUERY
     time_aggregation_method = "Average"
     threshold               = 0.99
