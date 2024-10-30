@@ -93,7 +93,7 @@ variable "argocd_server_addr" {
   description = "ArgoCD hostname"
 }
 
-variable "arc_alert_enabled" {
+variable "alert_enabled_cittadini" {
   type    = bool
   default = false
 }
