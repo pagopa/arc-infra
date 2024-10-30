@@ -1,4 +1,4 @@
-resource "azurerm_monitor_action_group" "slackArc" {
+resource "azurerm_monitor_action_group" "slack_cittadini" {
 
   count = var.arc_alert_enabled ? 1 : 0
 
