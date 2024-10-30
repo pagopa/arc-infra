@@ -33,7 +33,7 @@ resource "azurerm_monitor_scheduled_query_rules_alert_v2" "Availability" {
           | summarize tot = todouble(count()) by bin(TimeGenerated, interval);
       let errors = AzureDiagnostics
           | where requestUri_s has 'cittadini'
-          | where httpStatusCode_d > 412
+          | where strcmp(httpStatusCode_s,"412") > 0
           | summarize not_ok = count() by bin(TimeGenerated, interval);
       tot
       | join kind=leftouter errors on TimeGenerated
