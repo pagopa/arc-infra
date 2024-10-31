@@ -40,4 +40,7 @@ locals {
   monitor_resource_group_name     = "${local.project_core}-monitor-rg"
   monitor_action_group_slack_name = "SlackPagoPA"
   monitor_action_group_email_name = "PagoPA"
+
+  log_analytics_name = "${local.project_core}-law"
+
 }

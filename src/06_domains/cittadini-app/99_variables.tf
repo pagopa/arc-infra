@@ -93,3 +93,6 @@ variable "argocd_server_addr" {
   description = "ArgoCD hostname"
 }
 
+variable "alert_enabled" {
+  type = bool
+}
