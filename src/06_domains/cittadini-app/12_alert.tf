@@ -14,7 +14,7 @@ resource "azurerm_monitor_action_group" "slack_cittadini" {
 }
 
 resource "azurerm_monitor_scheduled_query_rules_alert_v2" "Availability" {
-  count               = var.alert_enabled ? 1 : 0
+  count = var.alert_enabled ? 1 : 0
 
   name                = "${local.project}-Availability"
   location            = data.azurerm_resource_group.monitor_rg.location

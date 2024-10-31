@@ -94,5 +94,5 @@ variable "argocd_server_addr" {
 }
 
 variable "alert_enabled" {
-  type    = bool
+  type = bool
 }

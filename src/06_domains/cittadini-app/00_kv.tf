@@ -23,7 +23,7 @@ data "azurerm_key_vault" "kv" {
 }
 
 data "azurerm_key_vault_secret" "alert-slack-arc" {
-  count = var.alert_enabled ? 1 : 0
+  count        = var.alert_enabled ? 1 : 0
   name         = "alert-notification-slack"
   key_vault_id = data.azurerm_key_vault.kv.id
 }
