@@ -23,3 +23,8 @@ bizevents_paids_base_url   = "https://api.uat.platform.pagopa.it/bizevents/notic
 ## Domains
 external_domain = "pagopa.it"
 dns_zone_prefix = "uat.cittadini"
+
+### ARGOCD
+argocd_server_addr = "argocd.internal.uat.cittadini.pagopa.it"
+
+arc_alert_enabled = "true"

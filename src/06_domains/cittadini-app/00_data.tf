@@ -2,15 +2,6 @@ data "azurerm_subscription" "current" {}
 
 data "azurerm_client_config" "current" {}
 
-#
-# 🔐 KV
-#
-
-data "azurerm_key_vault" "key_vault" {
-  name                = local.kv_domain_name
-  resource_group_name = local.kv_domain_rg_name
-}
-
 data "azurerm_kubernetes_cluster" "aks" {
   name                = local.aks_name
   resource_group_name = local.aks_resource_group_name
@@ -42,4 +33,9 @@ data "azurerm_monitor_action_group" "email" {
 data "azurerm_key_vault_secret" "appinsights_connection_string" {
   name         = "appinsights-connection-string"
   key_vault_id = local.kv_domain_id
+}
+
+data "azurerm_log_analytics_workspace" "log_analytics" {
+  name                = local.log_analytics_name
+  resource_group_name = local.monitor_resource_group_name
 }
