@@ -27,4 +27,4 @@ dns_zone_prefix = "uat.cittadini"
 ### ARGOCD
 argocd_server_addr = "argocd.internal.uat.cittadini.pagopa.it"
 
-arc_alert_enabled = "true"
+alert_enabled = true
