@@ -1,7 +1,7 @@
 #
 # Terraform argocd project
 #
-resource "argocd_project" "project" {
+resource "argocd_project" "cittadini_project" {
   metadata {
     name      = "${var.domain}-project"
     namespace = "argocd"
@@ -13,7 +13,7 @@ resource "argocd_project" "project" {
   spec {
     description = "${var.domain}-project"
 
-    source_namespaces = ["argocd"]
+    source_namespaces = ["cittadini"]
     source_repos      = ["*"]
 
     destination {
@@ -72,7 +72,7 @@ resource "argocd_application" "root_cittadini_app" {
   wait    = true
 
   spec {
-    project = argocd_project.project.metadata[0].name
+    project = argocd_project.cittadini_project.metadata[0].name
     destination {
       server    = "https://kubernetes.default.svc"
       namespace = var.domain
@@ -84,7 +84,7 @@ resource "argocd_application" "root_cittadini_app" {
       path            = "helm/${var.env}"
       helm {
         values = yamlencode({
-          _argocdProjectName : argocd_project.project.metadata[0].name
+          _argocdProjectName : argocd_project.cittadini_project.metadata[0].name
           _azureWorkloadIdentityClientId : module.workload_identity.workload_identity_client_id
           _gitRepoUrl : "https://github.com/pagopa/arc-cittadini-deploy-aks"
           _gitTargetRevision : "main"
@@ -94,22 +94,22 @@ resource "argocd_application" "root_cittadini_app" {
       }
     }
 
-    #     sync_policy {
-    #       automated {
-    #         prune       = true
-    #         self_heal   = false
-    #         allow_empty = false
-    #       }
-    #
-    #       retry {
-    #         backoff {
-    #           duration     = "5s"
-    #           factor       = "2"
-    #           max_duration = "3m0s"
-    #         }
-    #         limit = "5"
-    #       }
-    #     }
+    sync_policy {
+      automated {
+        prune       = false
+        self_heal   = false
+        allow_empty = false
+      }
+
+      retry {
+        backoff {
+          duration     = "5s"
+          factor       = "2"
+          max_duration = "3m0s"
+        }
+        limit = "5"
+      }
+    }
   }
 }
 
