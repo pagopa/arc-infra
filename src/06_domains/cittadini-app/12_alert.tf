@@ -80,9 +80,9 @@ resource "azurerm_monitor_metric_alert" "CPUClusterUsage" {
   criteria {
     metric_namespace = "Microsoft.ContainerService/managedClusters"
     metric_name      = "node_cpu_usage_percentage"
-    aggregation = "Average"
-    threshold   = 80
-    operator    = "GreaterThan"
+    aggregation      = "Average"
+    threshold        = 80
+    operator         = "GreaterThan"
   }
 
   description = "Trigger alert when CPU cluster usage is greater than 80%"
