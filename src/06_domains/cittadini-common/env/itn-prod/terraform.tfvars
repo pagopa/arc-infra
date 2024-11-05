@@ -30,8 +30,8 @@ cidr_subnet_redis = ["10.1.131.0/28"] # "10.1.131.0 --> 10.1.131.15
 
 ## Redis
 redis_params = {
-  capacity = 0
+  capacity = 1
   sku_name = "Standard"
-  family   = "C1"
+  family   = "C"
   version  = 6
 }
