@@ -27,4 +27,4 @@ external_domain = "pagopa.it"
 ### ARGOCD
 argocd_server_addr = "argocd.internal.cittadini.pagopa.it"
 
-alert_enabled = true
+alert_enabled = false
