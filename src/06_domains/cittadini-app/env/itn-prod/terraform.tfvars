@@ -27,4 +27,4 @@ external_domain = "pagopa.it"
 ### ARGOCD
 argocd_server_addr = "argocd.internal.cittadini.pagopa.it"
 
-alert_enabled = false
+alert_enabled = false # https://pagopa.atlassian.net/browse/P4PU-664
