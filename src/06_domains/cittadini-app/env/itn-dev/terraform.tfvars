@@ -16,7 +16,6 @@ tags = {
   CostCenter  = "TS310 - PAGAMENTI & SERVIZI"
 }
 
-bizevents_base_url         = "https://api.dev.platform.pagopa.it/bizevents/tx-service/v1/"
 gpd_payments_pull_base_url = "https://api.dev.platform.pagopa.it/pagopa-gpd-payments-pull/v1"
 bizevents_paids_base_url   = "https://api.dev.platform.pagopa.it/bizevents/notices-service/v1"
 
