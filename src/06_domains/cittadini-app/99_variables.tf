@@ -59,11 +59,6 @@ variable "k8s_kube_config_path_prefix" {
   default = "~/.kube"
 }
 
-variable "bizevents_base_url" {
-  type        = string
-  description = "Url of pagopa bizevents api"
-}
-
 variable "gpd_payments_pull_base_url" {
   type        = string
   description = "Url of pagopa payments pull api"
