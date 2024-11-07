@@ -59,10 +59,10 @@ resource "argocd_project" "cittadini_project" {
 #
 resource "argocd_application" "root_cittadini_app" {
   metadata {
-    name      = "root-${var.domain}-app"
+    name      = "root-${var.domain}-app-${var.env}"
     namespace = "argocd"
     labels = {
-      name : "root-${var.domain}-app"
+      name : "root-${var.domain}-app-${var.env}"
       domain : var.domain
       is_root : true
     }
@@ -88,7 +88,7 @@ resource "argocd_application" "root_cittadini_app" {
           _azureWorkloadIdentityClientId : module.workload_identity.workload_identity_client_id
           _gitRepoUrl : "https://github.com/pagopa/arc-cittadini-deploy-aks"
           _gitTargetRevision : "main"
-          _helmPath : "helm/dev"
+          _helmPath : "helm/${var.env}"
           _namespace : var.domain
         })
       }
