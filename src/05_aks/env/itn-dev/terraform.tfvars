@@ -68,4 +68,5 @@ dns_zone_prefix = "dev.cittadini"
 external_domain = "pagopa.it"
 
 ### ARGOCD
-argocd_helm_release_version = "7.4.5" #2.12.2
+#https://github.com/argoproj/argo-helm/releases/tag/argo-cd-7.7.1
+argocd_helm_release_version = "7.7.1" #2.13.0
