@@ -46,7 +46,7 @@
               "additionalResourceOptions": [],
               "showDefault": false
             },
-            "jsonData": "[\r\n{\"label\": \"30s\", \"value\": 30000, \"selected\": false},\r\n{\"label\": \"1m\", \"value\": 60000, \"selected\": true},\r\n{\"label\": \"2m\", \"value\": 120000, \"selected\": false},\r\n{\"label\": \"10m\", \"value\": 600000, \"selected\": false},\r\n{\"label\": \"30m\", \"value\": 3600000, \"selected\": false}\r\n]",
+            "jsonData": "[\r\n    {\"label\": \"1s\", \"value\": 1000, \"selected\": false},\r\n    {\"label\": \"5s\", \"value\": 5000, \"selected\": false},\r\n    {\"label\": \"10s\", \"value\": 10000, \"selected\": false},\r\n    {\"label\": \"30s\", \"value\": 30000, \"selected\": false},\r\n    {\"label\": \"1m\", \"value\": 60000, \"selected\": true},\r\n    {\"label\": \"2m\", \"value\": 120000, \"selected\": false},\r\n    {\"label\": \"10m\", \"value\": 600000, \"selected\": false},\r\n    {\"label\": \"30m\", \"value\": 3600000, \"selected\": false}\r\n]",
             "timeContext": {
               "durationMs": 86400000
             }
@@ -532,7 +532,7 @@
                     "additionalResourceOptions": [],
                     "showDefault": false
                   },
-                  "jsonData": "[\n    {\"label\":\"oneIdentity\",\"value\":\"dev.oneid.pagopa.it\",\"selected\": true},\n    {\"label\":\"bizEvents\",\"value\":\"bizevents\",\"selected\": true},\n    {\"label\":\"payments pull\",\"value\":\"pagopa-gpd-payments-pull\",\"selected\": true}\n]",
+                  "jsonData": "[\n    {\"label\":\"oneIdentity\",\"value\":\"oneid.pagopa.it\",\"selected\": true},\n    {\"label\":\"bizEvents\",\"value\":\"bizevents\",\"selected\": true},\n    {\"label\":\"payments pull\",\"value\":\"pagopa-gpd-payments-pull\",\"selected\": true}\n]",
                   "timeContext": {
                     "durationMs": 86400000
                   },
@@ -554,7 +554,7 @@
             "type": 3,
             "content": {
               "version": "KqlItem/1.0",
-              "query": "let startTime = {timeRangeOverall:start};\r\nlet endTime = {timeRangeOverall:end};\r\n\r\ndependencies\r\n| where timestamp between (startTime .. endTime)\r\n| where cloud_RoleName startswith \"pagopaarcbe\"\r\n| where data has (\"{externalService}\")\r\n| summarize total=count() by bin(timestamp,1m), cloud_RoleName\r\n| render timechart",
+              "query": "let startTime = {timeRangeOverall:start};\r\nlet endTime = {timeRangeOverall:end};\r\nlet interval = totimespan({timeSpan:label});\r\n\r\ndependencies\r\n| where timestamp between (startTime .. endTime)\r\n| where cloud_RoleName startswith \"pagopaarcbe\"\r\n| where data has (\"{externalService}\")\r\n| summarize total=count() by bin(timestamp,interval), cloud_RoleName\r\n| render timechart",
               "size": 0,
               "showAnalytics": true,
               "title": "Number of calls to the external service \" {externalService:label} \" made by arc-be",
@@ -577,7 +577,7 @@
             "type": 3,
             "content": {
               "version": "KqlItem/1.0",
-              "query": "let startTime = {timeRangeOverall:start};\r\nlet endTime = {timeRangeOverall:end};\r\n\r\ndependencies\r\n| where timestamp between (startTime .. endTime)\r\n| where cloud_RoleName startswith \"pagopaarcbe\"\r\n| where data has (\"{externalService}\")\r\n| summarize total=count() by bin(timestamp,1m),resultCode\r\n| render timechart",
+              "query": "let startTime = {timeRangeOverall:start};\r\nlet endTime = {timeRangeOverall:end};\r\nlet interval = totimespan({timeSpan:label});\r\n\r\ndependencies\r\n| where timestamp between (startTime .. endTime)\r\n| where cloud_RoleName startswith \"pagopaarcbe\"\r\n| where data has (\"{externalService}\")\r\n| summarize total=count() by bin(timestamp,interval),resultCode\r\n| render timechart",
               "size": 0,
               "showAnalytics": true,
               "title": "Number of calls to the external service \" {externalService:label} \" divided by resultCode",
@@ -600,7 +600,7 @@
             "type": 3,
             "content": {
               "version": "KqlItem/1.0",
-              "query": "let startTime = {timeRangeOverall:start};\r\nlet endTime = {timeRangeOverall:end};\r\n\r\ndependencies\r\n| where timestamp between (startTime .. endTime)\r\n| where cloud_RoleName startswith \"pagopaarcbe\"\r\n| where data has (\"{externalService}\")\r\n| summarize total=count() by bin(timestamp,1m), operation_Name\r\n| render timechart",
+              "query": "let startTime = {timeRangeOverall:start};\r\nlet endTime = {timeRangeOverall:end};\r\nlet interval = totimespan({timeSpan:label});\r\n\r\ndependencies\r\n| where timestamp between (startTime .. endTime)\r\n| where cloud_RoleName startswith \"pagopaarcbe\"\r\n| where data has (\"{externalService}\")\r\n| summarize total=count() by bin(timestamp,interval), operation_Name\r\n| render timechart",
               "size": 0,
               "showAnalytics": true,
               "title": "Number of calls to the external service \" bizEvents \" divided by API",
@@ -623,7 +623,7 @@
             "type": 3,
             "content": {
               "version": "KqlItem/1.0",
-              "query": "let startTime = {timeRangeOverall:start};\r\nlet endTime = {timeRangeOverall:end};\r\n\r\ndependencies\r\n| where timestamp between (startTime .. endTime)\r\n| where cloud_RoleName startswith \"pagopaarcbe\"\r\n| where data has (\"{externalService}\")\r\n| summarize total=count() by bin(timestamp,1m), duration, cloud_RoleName\r\n| render timechart",
+              "query": "let startTime = {timeRangeOverall:start};\r\nlet endTime = {timeRangeOverall:end};\r\nlet interval = totimespan({timeSpan:label});\r\n\r\ndependencies\r\n| where timestamp between (startTime .. endTime)\r\n| where cloud_RoleName startswith \"pagopaarcbe\"\r\n| where data has (\"{externalService}\")\r\n| summarize total=percentile(duration,95) by bin(timestamp,interval)\r\n| render timechart",
               "size": 0,
               "showAnalytics": true,
               "title": "Duration of calls to the external service \" {externalService:label} \" made by arc-be",
@@ -636,9 +636,6 @@
               "visualization": "timechart",
               "chartSettings": {
                 "xAxis": "timestamp",
-                "yAxis": [
-                  "duration"
-                ],
                 "customThresholdLine": "800",
                 "customThresholdLineStyle": 0
               }
