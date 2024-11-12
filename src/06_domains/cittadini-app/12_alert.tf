@@ -94,7 +94,7 @@ resource "azurerm_monitor_metric_alert" "CPUClusterUsage" {
   tags = var.tags
 }
 
-resource "azurerm_monitor_metric_alert" "RAMClusterUsage" {
+resource "azurerm_monitor_metric_alert" "ram_cluster_usage" {
   count = var.alert_enabled ? 1 : 0
 
   name                = "${local.project}-RAM-cluster-usage"
