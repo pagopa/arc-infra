@@ -93,3 +93,30 @@ resource "azurerm_monitor_metric_alert" "CPUClusterUsage" {
 
   tags = var.tags
 }
+
+resource "azurerm_monitor_metric_alert" "ram_cluster_usage" {
+  count = var.alert_enabled ? 1 : 0
+
+  name                = "${local.project}-RAM-cluster-usage"
+  resource_group_name = data.azurerm_resource_group.monitor_rg.name
+
+  scopes      = [data.azurerm_kubernetes_cluster.aks.id]
+  severity    = 0
+  frequency   = "PT1H"
+  window_size = "PT1H"
+  criteria {
+    metric_namespace = "Microsoft.ContainerService/managedClusters"
+    metric_name      = "node_memory_working_set_percentage"
+    aggregation      = "Average"
+    threshold        = 80
+    operator         = "GreaterThan"
+  }
+
+  description = "Trigger alert when RAM cluster usage is greater than 80%"
+  enabled     = true
+  action {
+    action_group_id = azurerm_monitor_action_group.slack_cittadini[0].id
+  }
+
+  tags = var.tags
+}
