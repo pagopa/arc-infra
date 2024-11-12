@@ -32,7 +32,7 @@ aks_sku_tier       = "Standard"
 aks_alerts_enabled = true
 
 aks_system_node_pool = {
-  name                         = "arcusys"
+  name                         = "arcpsys"
   vm_size                      = "Standard_D2ds_v5"
   os_disk_type                 = "Ephemeral"
   os_disk_size_gb              = "75"
@@ -45,7 +45,7 @@ aks_system_node_pool = {
 
 aks_user_node_pool = {
   enabled         = true
-  name            = "arcuuser"
+  name            = "arcpuser"
   vm_size         = "Standard_D8ds_v5"
   os_disk_type    = "Ephemeral"
   os_disk_size_gb = "100"
