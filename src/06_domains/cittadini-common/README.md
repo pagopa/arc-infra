@@ -71,8 +71,8 @@
 | <a name="input_location"></a> [location](#input\_location) | n/a | `string` | n/a | yes |
 | <a name="input_location_short"></a> [location\_short](#input\_location\_short) | Location short like eg: neu, weu.. | `string` | n/a | yes |
 | <a name="input_prefix"></a> [prefix](#input\_prefix) | n/a | `string` | n/a | yes |
-| <a name="input_redis_params"></a> [redis\_params](#input\_redis\_params) | Redis | <pre>object({<br>    capacity = number<br>    sku_name = string<br>    family   = string<br>    version  = string<br>  })</pre> | n/a | yes |
-| <a name="input_tags"></a> [tags](#input\_tags) | n/a | `map(any)` | <pre>{<br>  "CreatedBy": "Terraform"<br>}</pre> | no |
+| <a name="input_redis_params"></a> [redis\_params](#input\_redis\_params) | Redis | <pre>object({<br/>    capacity = number<br/>    sku_name = string<br/>    family   = string<br/>    version  = string<br/>  })</pre> | n/a | yes |
+| <a name="input_tags"></a> [tags](#input\_tags) | n/a | `map(any)` | <pre>{<br/>  "CreatedBy": "Terraform"<br/>}</pre> | no |
 
 ## Outputs
 
