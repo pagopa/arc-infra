@@ -39,3 +39,8 @@ data "azurerm_log_analytics_workspace" "log_analytics" {
   name                = local.log_analytics_name
   resource_group_name = local.monitor_resource_group_name
 }
+
+data "azurerm_redis_cache" "redis_common" {
+  name                = format("%s-redis", local.project)
+  resource_group_name = "${local.project}-redis-rg"
+}
