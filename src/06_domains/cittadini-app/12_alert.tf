@@ -120,3 +120,30 @@ resource "azurerm_monitor_metric_alert" "ram_cluster_usage" {
 
   tags = var.tags
 }
+
+resource "azurerm_monitor_metric_alert" "redis_server_load" {
+  count = var.alert_enabled ? 1 : 0
+
+  name                = "${local.project}-redis-server-load"
+  resource_group_name = data.azurerm_resource_group.monitor_rg.name
+
+  scopes      = [data.azurerm_redis_cache.redis_common.id]
+  severity    = 0
+  frequency   = "PT15M"
+  window_size = "PT30M"
+  criteria {
+    metric_namespace = "Microsoft.Cache/redis"
+    metric_name      = "allserverLoad"
+    aggregation      = "Average"
+    threshold        = 80
+    operator         = "GreaterThan"
+  }
+
+  description = "Trigger alert when Redis serve usage is greater than 80%"
+  enabled     = true
+  action {
+    action_group_id = azurerm_monitor_action_group.slack_cittadini[0].id
+  }
+
+  tags = var.tags
+}
