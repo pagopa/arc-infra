@@ -1,4 +1,7 @@
 {
+  "sampling": {
+    "percentage": 100
+  },
   "preview": {
     "processors": [
       {
