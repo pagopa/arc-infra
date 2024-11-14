@@ -129,8 +129,8 @@ resource "azurerm_monitor_metric_alert" "redis_server_load" {
 
   scopes      = [data.azurerm_redis_cache.redis_common.id]
   severity    = 0
-  frequency   = "PT10M"
-  window_size = "PT20M"
+  frequency   = "PT15M"
+  window_size = "PT30M"
   criteria {
     metric_namespace = "Microsoft.Cache/redis"
     metric_name      = "allserverLoad"
