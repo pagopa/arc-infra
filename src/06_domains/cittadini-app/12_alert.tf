@@ -22,21 +22,21 @@ resource "azurerm_monitor_scheduled_query_rules_alert_v2" "Availability" {
 
   evaluation_frequency = "P1D"
   window_duration      = "P1D"
-  scopes               = [data.azurerm_log_analytics_workspace.log_analytics.id]
+  scopes               = [data.azurerm_application_insights.application_insights.id]
   severity             = 0
   criteria {
     query                   = <<-QUERY
       let interval = totimespan(1m);
-      let tot = AzureDiagnostics
-          | where requestUri_s has 'cittadini'
-          | summarize tot = todouble(count()) by bin(TimeGenerated, interval);
-      let errors = AzureDiagnostics
-          | where requestUri_s has 'cittadini'
-          | where strcmp(httpStatusCode_s,"412") > 0
-          | summarize not_ok = count() by bin(TimeGenerated, interval);
+      let tot = requests
+        | where operation_Name has 'cittadini'
+        | summarize tot = todouble(count()) by bin(timestamp, interval);
+      let errors = requests
+        | where operation_Name has 'cittadini'
+        | where strcmp(resultCode,"412") > 0
+        | summarize not_ok = count() by bin(timestamp, interval);
       tot
-      | join kind=leftouter errors on TimeGenerated
-      | project TimeGenerated, availability = (tot - coalesce(not_ok, 0)) / tot, watermark=0.99
+        | join kind=leftouter errors on timestamp
+        | project timestamp, availability = (tot - coalesce(not_ok, 0)) / tot, watermark=0.99
       QUERY
     time_aggregation_method = "Average"
     threshold               = 0.99
