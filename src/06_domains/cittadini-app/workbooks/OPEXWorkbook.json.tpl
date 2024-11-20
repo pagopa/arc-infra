@@ -745,8 +745,9 @@
                     "resourceType": "microsoft.cache/redis",
                     "metricScope": 0,
                     "resourceIds": [
-                      "/subscriptions/${subscription_id}/resourceGroups/${prefix}-${location_short}-redis-rg/providers/Microsoft.Cache/Redis/${prefix}-${location_short}-redis"
+                      "/subscriptions/${subscription_id}/resourceGroups/${prefix}-${location_short}-cittadini-redis-rg/providers/Microsoft.Cache/Redis/${prefix}-${location_short}-cittadini-redis"
                     ],
+                    "timeContextFromParameter": "timeRangeOverall",
                     "timeContext": {
                       "durationMs": 2592000000
                     },
@@ -779,8 +780,9 @@
                     "resourceType": "microsoft.cache/redis",
                     "metricScope": 0,
                     "resourceIds": [
-                      "/subscriptions/${subscription_id}/resourceGroups/${prefix}-${location_short}-redis-rg/providers/Microsoft.Cache/Redis/${prefix}-${location_short}-redis"
+                      "/subscriptions/${subscription_id}/resourceGroups/${prefix}-${location_short}-cittadini-redis-rg/providers/Microsoft.Cache/Redis/${prefix}-${location_short}-cittadini-redis"
                     ],
+                    "timeContextFromParameter": "timeRangeOverall",
                     "timeContext": {
                       "durationMs": 2592000000
                     },
@@ -848,8 +850,9 @@
                     "resourceType": "microsoft.cache/redis",
                     "metricScope": 0,
                     "resourceIds": [
-                      "/subscriptions/${subscription_id}/resourceGroups/${prefix}-${location_short}-redis-rg/providers/Microsoft.Cache/Redis/${prefix}-${location_short}-redis"
+                      "/subscriptions/${subscription_id}/resourceGroups/${prefix}-${location_short}-cittadini-redis-rg/providers/Microsoft.Cache/Redis/${prefix}-${location_short}-cittadini-redis"
                     ],
+                    "timeContextFromParameter": "timeRangeOverall",
                     "timeContext": {
                       "durationMs": 3600000
                     },
@@ -881,8 +884,9 @@
                     "resourceType": "microsoft.cache/redis",
                     "metricScope": 0,
                     "resourceIds": [
-                      "/subscriptions/${subscription_id}/resourceGroups/${prefix}-${location_short}-redis-rg/providers/Microsoft.Cache/Redis/${prefix}-${location_short}-redis"
+                      "/subscriptions/${subscription_id}/resourceGroups/${prefix}-${location_short}-cittadini-redis-rg/providers/Microsoft.Cache/Redis/${prefix}-${location_short}-cittadini-redis"
                     ],
+                    "timeContextFromParameter": "timeRangeOverall",
                     "timeContext": {
                       "durationMs": 2592000000
                     },
@@ -914,8 +918,9 @@
                     "resourceType": "microsoft.cache/redis",
                     "metricScope": 0,
                     "resourceIds": [
-                      "/subscriptions/${subscription_id}/resourceGroups/${prefix}-${location_short}-redis-rg/providers/Microsoft.Cache/Redis/${prefix}-${location_short}-redis"
+                      "/subscriptions/${subscription_id}/resourceGroups/${prefix}-${location_short}-cittadini-redis-rg/providers/Microsoft.Cache/Redis/${prefix}-${location_short}-cittadini-redis"
                     ],
+                    "timeContextFromParameter": "timeRangeOverall",
                     "timeContext": {
                       "durationMs": 2592000000
                     },
@@ -946,8 +951,9 @@
                     "resourceType": "microsoft.cache/redis",
                     "metricScope": 0,
                     "resourceIds": [
-                      "/subscriptions/${subscription_id}/resourceGroups/${prefix}-${location_short}-redis-rg/providers/Microsoft.Cache/Redis/${prefix}-${location_short}-redis"
+                      "/subscriptions/${subscription_id}/resourceGroups/${prefix}-${location_short}-cittadini-redis-rg/providers/Microsoft.Cache/Redis/${prefix}-${location_short}-cittadini-redis"
                     ],
+                    "timeContextFromParameter": "timeRangeOverall",
                     "timeContext": {
                       "durationMs": 2592000000
                     },
