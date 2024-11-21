@@ -83,8 +83,8 @@
                   "id": "5a3e244e-a412-4f57-912f-0e0cc4e4abd1",
                   "cellValue": "selectedTab",
                   "linkTarget": "parameter",
-                  "linkLabel": "CLUSTER METRICS",
-                  "subTarget": "clusterMetrics",
+                  "linkLabel": "RESOURCE METRICS",
+                  "subTarget": "resourceMetrics",
                   "style": "link"
                 },
                 {
@@ -437,86 +437,6 @@
             "name": "all"
           },
           {
-            "type": 10,
-            "content": {
-              "chartId": "workbook4ff901ba-f592-405c-b520-5b7c8f17bc06",
-              "version": "MetricsItem/2.0",
-              "size": 0,
-              "chartType": 2,
-              "resourceType": "microsoft.containerservice/managedclusters",
-              "metricScope": 0,
-              "resourceIds": [
-                "/subscriptions/${subscription_id}/resourceGroups/${prefix}-${location_short}-${env}-aks-rg/providers/Microsoft.ContainerService/managedClusters/${prefix}-${location_short}-${env}-aks"
-              ],
-              "timeContextFromParameter": "timeRangeOverall",
-              "timeContext": {
-                "durationMs": 86400000
-              },
-              "metrics": [
-                {
-                  "namespace": "microsoft.containerservice/managedclusters",
-                  "metric": "microsoft.containerservice/managedclusters-Nodes (PREVIEW)-node_cpu_usage_percentage",
-                  "aggregation": 4
-                }
-              ],
-              "title": "Cluster CPU Usage",
-              "showOpenInMe": true,
-              "gridSettings": {
-                "rowLimit": 10000
-              }
-            },
-            "customWidth": "50",
-            "conditionalVisibility": {
-              "parameterName": "selectedTab",
-              "comparison": "isEqualTo",
-              "value": "clusterMetrics"
-            },
-            "name": "Cluster CPU Usage ",
-            "styleSettings": {
-              "maxWidth": "50"
-            }
-          },
-          {
-            "type": 10,
-            "content": {
-              "chartId": "workbook3fc01a1c-c9b3-4135-9a95-cfa0513d9af6",
-              "version": "MetricsItem/2.0",
-              "size": 0,
-              "chartType": 2,
-              "resourceType": "microsoft.containerservice/managedclusters",
-              "metricScope": 0,
-              "resourceIds": [
-                "/subscriptions/${subscription_id}/resourceGroups/${prefix}-${location_short}-${env}-aks-rg/providers/Microsoft.ContainerService/managedClusters/${prefix}-${location_short}-${env}-aks"
-              ],
-              "timeContextFromParameter": "timeRangeOverall",
-              "timeContext": {
-                "durationMs": 86400000
-              },
-              "metrics": [
-                {
-                  "namespace": "microsoft.containerservice/managedclusters",
-                  "metric": "microsoft.containerservice/managedclusters-Nodes (PREVIEW)-node_memory_working_set_percentage",
-                  "aggregation": 4
-                }
-              ],
-              "title": "Cluster Memory Usage",
-              "showOpenInMe": true,
-              "gridSettings": {
-                "rowLimit": 10000
-              }
-            },
-            "customWidth": "50",
-            "conditionalVisibility": {
-              "parameterName": "selectedTab",
-              "comparison": "isEqualTo",
-              "value": "clusterMetrics"
-            },
-            "name": "Cluster Memory Usage",
-            "styleSettings": {
-              "maxWidth": "50"
-            }
-          },
-          {
             "type": 9,
             "content": {
               "version": "KqlParameterItem/1.0",
@@ -649,84 +569,507 @@
             "name": "Duration of calls to the external service made by arc-be"
           },
           {
-            "type": 10,
+            "type": 12,
             "content": {
-              "chartId": "workbook539a8e8b-cead-4bf5-97c0-e793617b2805",
-              "version": "MetricsItem/2.0",
-              "size": 0,
-              "chartType": 2,
-              "resourceType": "microsoft.insights/components",
-              "metricScope": 0,
-              "resourceIds": [
-                "/subscriptions/${subscription_id}/resourceGroups/${prefix}-${location_short}-core-monitor-rg/providers/Microsoft.Insights/components/${prefix}-${location_short}-core-appinsights"
-              ],
-              "timeContextFromParameter": "timeRangeOverall",
-              "timeContext": {
-                "durationMs": 86400000
-              },
-              "metrics": [
+              "version": "NotebookGroup/1.0",
+              "groupType": "editable",
+              "title": "Kubernetes (AKS)",
+              "items": [
                 {
-                  "namespace": "microsoft.insights/components/kusto",
-                  "metric": "microsoft.insights/components/kusto-Performance Counters-performanceCounters/processCpuPercentageTotal",
-                  "aggregation": 4,
-                  "splitBy": [
-                    "cloud/roleInstance"
-                  ]
+                  "type": 10,
+                  "content": {
+                    "chartId": "workbook4ff901ba-f592-405c-b520-5b7c8f17bc06",
+                    "version": "MetricsItem/2.0",
+                    "size": 0,
+                    "chartType": 2,
+                    "resourceType": "microsoft.containerservice/managedclusters",
+                    "metricScope": 0,
+                    "resourceIds": [
+                      "/subscriptions/${subscription_id}/resourceGroups/${prefix}-${location_short}-${env}-aks-rg/providers/Microsoft.ContainerService/managedClusters/${prefix}-${location_short}-${env}-aks"
+                    ],
+                    "timeContextFromParameter": "timeRangeOverall",
+                    "timeContext": {
+                      "durationMs": 86400000
+                    },
+                    "metrics": [
+                      {
+                        "namespace": "microsoft.containerservice/managedclusters",
+                        "metric": "microsoft.containerservice/managedclusters-Nodes (PREVIEW)-node_cpu_usage_percentage",
+                        "aggregation": 4
+                      }
+                    ],
+                    "title": "Cluster CPU Usage",
+                    "showOpenInMe": true,
+                    "gridSettings": {
+                      "rowLimit": 10000
+                    }
+                  },
+                  "customWidth": "50",
+                  "name": "Cluster CPU Usage ",
+                  "styleSettings": {
+                    "maxWidth": "50"
+                  }
+                },
+                {
+                  "type": 10,
+                  "content": {
+                    "chartId": "workbook3fc01a1c-c9b3-4135-9a95-cfa0513d9af6",
+                    "version": "MetricsItem/2.0",
+                    "size": 0,
+                    "chartType": 2,
+                    "resourceType": "microsoft.containerservice/managedclusters",
+                    "metricScope": 0,
+                    "resourceIds": [
+                      "/subscriptions/${subscription_id}/resourceGroups/${prefix}-${location_short}-${env}-aks-rg/providers/Microsoft.ContainerService/managedClusters/${prefix}-${location_short}-${env}-aks"
+                    ],
+                    "timeContextFromParameter": "timeRangeOverall",
+                    "timeContext": {
+                      "durationMs": 86400000
+                    },
+                    "metrics": [
+                      {
+                        "namespace": "microsoft.containerservice/managedclusters",
+                        "metric": "microsoft.containerservice/managedclusters-Nodes (PREVIEW)-node_memory_working_set_percentage",
+                        "aggregation": 4
+                      }
+                    ],
+                    "title": "Cluster Memory Usage",
+                    "showOpenInMe": true,
+                    "gridSettings": {
+                      "rowLimit": 10000
+                    }
+                  },
+                  "customWidth": "50",
+                  "name": "Cluster Memory Usage",
+                  "styleSettings": {
+                    "maxWidth": "50"
+                  }
+                },
+                {
+                  "type": 10,
+                  "content": {
+                    "chartId": "workbook539a8e8b-cead-4bf5-97c0-e793617b2805",
+                    "version": "MetricsItem/2.0",
+                    "size": 0,
+                    "chartType": 2,
+                    "resourceType": "microsoft.insights/components",
+                    "metricScope": 0,
+                    "resourceIds": [
+                      "/subscriptions/${subscription_id}/resourceGroups/${prefix}-${location_short}-core-monitor-rg/providers/Microsoft.Insights/components/${prefix}-${location_short}-core-appinsights"
+                    ],
+                    "timeContextFromParameter": "timeRangeOverall",
+                    "timeContext": {
+                      "durationMs": 86400000
+                    },
+                    "metrics": [
+                      {
+                        "namespace": "microsoft.insights/components/kusto",
+                        "metric": "microsoft.insights/components/kusto-Performance Counters-performanceCounters/processCpuPercentageTotal",
+                        "aggregation": 4,
+                        "splitBy": [
+                          "cloud/roleInstance"
+                        ]
+                      }
+                    ],
+                    "title": "Avg Process CPU by Cloud Role Instance",
+                    "showOpenInMe": true,
+                    "gridSettings": {
+                      "rowLimit": 10000
+                    }
+                  },
+                  "customWidth": "50",
+                  "name": "Avg Process CPU by Cloud Role Instance"
+                },
+                {
+                  "type": 10,
+                  "content": {
+                    "chartId": "workbookdc92903c-915e-4148-806b-c77000e98c0c",
+                    "version": "MetricsItem/2.0",
+                    "size": 0,
+                    "chartType": 2,
+                    "resourceType": "microsoft.insights/components",
+                    "metricScope": 0,
+                    "resourceIds": [
+                      "/subscriptions/${subscription_id}/resourceGroups/${prefix}-${location_short}-core-monitor-rg/providers/Microsoft.Insights/components/${prefix}-${location_short}-core-appinsights"
+                    ],
+                    "timeContextFromParameter": "timeRangeOverall",
+                    "timeContext": {
+                      "durationMs": 86400000
+                    },
+                    "metrics": [
+                      {
+                        "namespace": "microsoft.insights/components/kusto",
+                        "metric": "microsoft.insights/components/kusto-Performance Counters-performanceCounters/memoryAvailableBytes",
+                        "aggregation": 4,
+                        "splitBy": [
+                          "cloud/roleInstance"
+                        ]
+                      }
+                    ],
+                    "title": "Available Memory by Cloud Role Instance",
+                    "showOpenInMe": true,
+                    "gridSettings": {
+                      "rowLimit": 10000
+                    }
+                  },
+                  "customWidth": "50",
+                  "name": "Available Memory by Cloud Role Instance"
                 }
-              ],
-              "title": "Avg Process CPU by Cloud Role Instance",
-              "showOpenInMe": true,
-              "gridSettings": {
-                "rowLimit": 10000
-              }
+              ]
             },
-            "customWidth": "50",
             "conditionalVisibility": {
               "parameterName": "selectedTab",
               "comparison": "isEqualTo",
-              "value": "clusterMetrics"
+              "value": "resourceMetrics"
             },
-            "name": "Avg Process CPU by Cloud Role Instance"
+            "name": "aks",
+            "styleSettings": {
+              "showBorder": true
+            }
           },
           {
-            "type": 10,
+            "type": 12,
             "content": {
-              "chartId": "workbookdc92903c-915e-4148-806b-c77000e98c0c",
-              "version": "MetricsItem/2.0",
-              "size": 0,
-              "chartType": 2,
-              "resourceType": "microsoft.insights/components",
-              "metricScope": 0,
-              "resourceIds": [
-                "/subscriptions/${subscription_id}/resourceGroups/${prefix}-${location_short}-core-monitor-rg/providers/Microsoft.Insights/components/${prefix}-${location_short}-core-appinsights"
-              ],
-              "timeContextFromParameter": "timeRangeOverall",
-              "timeContext": {
-                "durationMs": 86400000
-              },
-              "metrics": [
+              "version": "NotebookGroup/1.0",
+              "groupType": "editable",
+              "title": "REDIS",
+              "items": [
                 {
-                  "namespace": "microsoft.insights/components/kusto",
-                  "metric": "microsoft.insights/components/kusto-Performance Counters-performanceCounters/memoryAvailableBytes",
-                  "aggregation": 4,
-                  "splitBy": [
-                    "cloud/roleInstance"
-                  ]
+                  "type": 10,
+                  "content": {
+                    "chartId": "workbookf2611e3a-c3d4-4f29-88c5-f88da65801ea",
+                    "version": "MetricsItem/2.0",
+                    "size": 0,
+                    "chartType": 2,
+                    "color": "red",
+                    "resourceType": "microsoft.cache/redis",
+                    "metricScope": 0,
+                    "resourceIds": [
+                      "/subscriptions/${subscription_id}/resourceGroups/${prefix}-${location_short}-cittadini-redis-rg/providers/Microsoft.Cache/Redis/${prefix}-${location_short}-cittadini-redis"
+                    ],
+                    "timeContextFromParameter": "timeRangeOverall",
+                    "timeContext": {
+                      "durationMs": 2592000000
+                    },
+                    "metrics": [
+                      {
+                        "namespace": "microsoft.cache/redis",
+                        "metric": "microsoft.cache/redis-Cache-allcachehits",
+                        "aggregation": 3,
+                        "splitBy": null,
+                        "columnName": "Cache Hits"
+                      }
+                    ],
+                    "title": "Cache Hits",
+                    "showOpenInMe": true,
+                    "gridSettings": {
+                      "rowLimit": 10000
+                    }
+                  },
+                  "customWidth": "50",
+                  "name": "metric - 3"
+                },
+                {
+                  "type": 10,
+                  "content": {
+                    "chartId": "workbookec52b1ea-a8e6-4655-b78d-3c78eff34268",
+                    "version": "MetricsItem/2.0",
+                    "size": 0,
+                    "chartType": 2,
+                    "color": "red",
+                    "resourceType": "microsoft.cache/redis",
+                    "metricScope": 0,
+                    "resourceIds": [
+                      "/subscriptions/${subscription_id}/resourceGroups/${prefix}-${location_short}-cittadini-redis-rg/providers/Microsoft.Cache/Redis/${prefix}-${location_short}-cittadini-redis"
+                    ],
+                    "timeContextFromParameter": "timeRangeOverall",
+                    "timeContext": {
+                      "durationMs": 2592000000
+                    },
+                    "metrics": [
+                      {
+                        "namespace": "microsoft.cache/redis",
+                        "metric": "microsoft.cache/redis-Cache-allcachemisses",
+                        "aggregation": 3,
+                        "splitBy": null,
+                        "columnName": "Cache Misses"
+                      }
+                    ],
+                    "title": "Cache Misses",
+                    "showOpenInMe": true,
+                    "gridSettings": {
+                      "formatters": [
+                        {
+                          "columnMatch": "Subscription",
+                          "formatter": 5
+                        },
+                        {
+                          "columnMatch": "Name",
+                          "formatter": 13,
+                          "formatOptions": {
+                            "linkTarget": "Resource"
+                          }
+                        },
+                        {
+                          "columnMatch": "Cache Misses Timeline",
+                          "formatter": 5
+                        },
+                        {
+                          "columnMatch": "microsoft.cache/redis-Cache-allcachemisses",
+                          "formatter": 1,
+                          "numberFormat": {
+                            "unit": 0,
+                            "options": null
+                          }
+                        }
+                      ],
+                      "rowLimit": 10000,
+                      "labelSettings": [
+                        {
+                          "columnId": "Cache Misses",
+                          "label": "Cache Misses"
+                        },
+                        {
+                          "columnId": "Cache Misses Timeline",
+                          "label": "Cache Misses Timeline"
+                        }
+                      ]
+                    }
+                  },
+                  "customWidth": "50",
+                  "name": "metric - 1"
+                },
+                {
+                  "type": 10,
+                  "content": {
+                    "chartId": "workbook75f75039-2464-438d-bd9c-311aa989df12",
+                    "version": "MetricsItem/2.0",
+                    "size": 0,
+                    "chartType": 2,
+                    "color": "red",
+                    "resourceType": "microsoft.cache/redis",
+                    "metricScope": 0,
+                    "resourceIds": [
+                      "/subscriptions/${subscription_id}/resourceGroups/${prefix}-${location_short}-cittadini-redis-rg/providers/Microsoft.Cache/Redis/${prefix}-${location_short}-cittadini-redis"
+                    ],
+                    "timeContextFromParameter": "timeRangeOverall",
+                    "timeContext": {
+                      "durationMs": 3600000
+                    },
+                    "metrics": [
+                      {
+                        "namespace": "microsoft.cache/redis",
+                        "metric": "microsoft.cache/redis-Cache-allserverLoad",
+                        "aggregation": 3,
+                        "splitBy": null
+                      }
+                    ],
+                    "title": "Server Load",
+                    "showOpenInMe": true,
+                    "gridSettings": {
+                      "rowLimit": 10000
+                    }
+                  },
+                  "customWidth": "50",
+                  "name": "metric - 2"
+                },
+                {
+                  "type": 10,
+                  "content": {
+                    "chartId": "workbook8df86730-de77-41fa-87b8-7e8d82456b68",
+                    "version": "MetricsItem/2.0",
+                    "size": 0,
+                    "chartType": 2,
+                    "color": "red",
+                    "resourceType": "microsoft.cache/redis",
+                    "metricScope": 0,
+                    "resourceIds": [
+                      "/subscriptions/${subscription_id}/resourceGroups/${prefix}-${location_short}-cittadini-redis-rg/providers/Microsoft.Cache/Redis/${prefix}-${location_short}-cittadini-redis"
+                    ],
+                    "timeContextFromParameter": "timeRangeOverall",
+                    "timeContext": {
+                      "durationMs": 2592000000
+                    },
+                    "metrics": [
+                      {
+                        "namespace": "microsoft.cache/redis",
+                        "metric": "microsoft.cache/redis-Cache-allusedmemory",
+                        "aggregation": 3,
+                        "splitBy": null
+                      }
+                    ],
+                    "title": "Used Memory",
+                    "showOpenInMe": true,
+                    "gridSettings": {
+                      "rowLimit": 10000
+                    }
+                  },
+                  "customWidth": "50",
+                  "name": "metric - 3"
+                },
+                {
+                  "type": 10,
+                  "content": {
+                    "chartId": "workbook110a06cd-d4e0-40a0-9c28-aa79d56cd4a4",
+                    "version": "MetricsItem/2.0",
+                    "size": 0,
+                    "chartType": 2,
+                    "color": "red",
+                    "resourceType": "microsoft.cache/redis",
+                    "metricScope": 0,
+                    "resourceIds": [
+                      "/subscriptions/${subscription_id}/resourceGroups/${prefix}-${location_short}-cittadini-redis-rg/providers/Microsoft.Cache/Redis/${prefix}-${location_short}-cittadini-redis"
+                    ],
+                    "timeContextFromParameter": "timeRangeOverall",
+                    "timeContext": {
+                      "durationMs": 2592000000
+                    },
+                    "metrics": [
+                      {
+                        "namespace": "microsoft.cache/redis",
+                        "metric": "microsoft.cache/redis-Cache-allpercentprocessortime",
+                        "aggregation": 3,
+                        "splitBy": null
+                      }
+                    ],
+                    "title": "CPU ",
+                    "gridSettings": {
+                      "rowLimit": 10000
+                    }
+                  },
+                  "customWidth": "50",
+                  "name": "metric - 4"
+                },
+                {
+                  "type": 10,
+                  "content": {
+                    "chartId": "workbook675b47d8-982c-4e7a-a9d6-93f46223e893",
+                    "version": "MetricsItem/2.0",
+                    "size": 0,
+                    "chartType": 2,
+                    "color": "red",
+                    "resourceType": "microsoft.cache/redis",
+                    "metricScope": 0,
+                    "resourceIds": [
+                      "/subscriptions/${subscription_id}/resourceGroups/${prefix}-${location_short}-cittadini-redis-rg/providers/Microsoft.Cache/Redis/${prefix}-${location_short}-cittadini-redis"
+                    ],
+                    "timeContextFromParameter": "timeRangeOverall",
+                    "timeContext": {
+                      "durationMs": 2592000000
+                    },
+                    "metrics": [
+                      {
+                        "namespace": "microsoft.cache/redis",
+                        "metric": "microsoft.cache/redis-Cache-errors",
+                        "aggregation": 3,
+                        "splitBy": null
+                      }
+                    ],
+                    "title": "Error",
+                    "tileSettings": {
+                      "showBorder": false,
+                      "titleContent": {
+                        "columnMatch": "Name",
+                        "formatter": 13
+                      },
+                      "leftContent": {
+                        "columnMatch": "Value",
+                        "formatter": 12,
+                        "formatOptions": {
+                          "palette": "auto"
+                        },
+                        "numberFormat": {
+                          "unit": 17,
+                          "options": {
+                            "maximumSignificantDigits": 3,
+                            "maximumFractionDigits": 2
+                          }
+                        }
+                      }
+                    },
+                    "graphSettings": {
+                      "type": 0,
+                      "topContent": {
+                        "columnMatch": "Subscription",
+                        "formatter": 1
+                      },
+                      "centerContent": {
+                        "columnMatch": "Value",
+                        "formatter": 1,
+                        "numberFormat": {
+                          "unit": 17,
+                          "options": {
+                            "maximumSignificantDigits": 3,
+                            "maximumFractionDigits": 2
+                          }
+                        }
+                      }
+                    },
+                    "gridSettings": {
+                      "formatters": [
+                        {
+                          "columnMatch": "Subscription",
+                          "formatter": 5
+                        },
+                        {
+                          "columnMatch": "Name",
+                          "formatter": 13,
+                          "formatOptions": {
+                            "linkTarget": "Resource"
+                          }
+                        },
+                        {
+                          "columnMatch": "Metric",
+                          "formatter": 1
+                        },
+                        {
+                          "columnMatch": "Aggregation",
+                          "formatter": 5
+                        },
+                        {
+                          "columnMatch": "Value",
+                          "formatter": 1
+                        },
+                        {
+                          "columnMatch": "Timeline",
+                          "formatter": 9
+                        },
+                        {
+                          "columnMatch": "microsoft.cache/redis-Cache-errors",
+                          "formatter": 1,
+                          "numberFormat": {
+                            "unit": 0,
+                            "options": null
+                          }
+                        }
+                      ],
+                      "rowLimit": 10000,
+                      "labelSettings": [
+                        {
+                          "columnId": "microsoft.cache/redis-Cache-errors",
+                          "label": "Errors (Max)"
+                        },
+                        {
+                          "columnId": "microsoft.cache/redis-Cache-errors Timeline",
+                          "label": "Errors (Max) Timeline"
+                        }
+                      ]
+                    }
+                  },
+                  "customWidth": "50",
+                  "name": "metric - 5"
                 }
-              ],
-              "title": "Available Memory by Cloud Role Instance",
-              "showOpenInMe": true,
-              "gridSettings": {
-                "rowLimit": 10000
-              }
+              ]
             },
-            "customWidth": "50",
             "conditionalVisibility": {
               "parameterName": "selectedTab",
               "comparison": "isEqualTo",
-              "value": "clusterMetrics"
+              "value": "resourceMetrics"
             },
-            "name": "Available Memory by Cloud Role Instance"
+            "name": "REDIS",
+            "styleSettings": {
+              "showBorder": true
+            }
           }
         ]
       },
