@@ -26,8 +26,10 @@
 |------|--------|---------|
 | <a name="module___v3__"></a> [\_\_v3\_\_](#module\_\_\_v3\_\_) | git::https://github.com/pagopa/terraform-azurerm-v3.git | 8405da92a68ffc8267fed02a4689e55387299248 |
 | <a name="module_aks"></a> [aks](#module\_aks) | ./.terraform/modules/__v3__/kubernetes_cluster | n/a |
+| <a name="module_aks_prometheus_install"></a> [aks\_prometheus\_install](#module\_aks\_prometheus\_install) | ./.terraform/modules/__v3__/kubernetes_prometheus_install | n/a |
 | <a name="module_aks_snet_system"></a> [aks\_snet\_system](#module\_aks\_snet\_system) | ./.terraform/modules/__v3__/subnet | n/a |
 | <a name="module_aks_snet_user"></a> [aks\_snet\_user](#module\_aks\_snet\_user) | ./.terraform/modules/__v3__/subnet | n/a |
+| <a name="module_aks_storage_class"></a> [aks\_storage\_class](#module\_aks\_storage\_class) | ./.terraform/modules/__v3__/kubernetes_storage_class | n/a |
 | <a name="module_argocd_workload_identity_configuration"></a> [argocd\_workload\_identity\_configuration](#module\_argocd\_workload\_identity\_configuration) | ./.terraform/modules/__v3__/kubernetes_workload_identity_configuration | n/a |
 | <a name="module_argocd_workload_identity_init"></a> [argocd\_workload\_identity\_init](#module\_argocd\_workload\_identity\_init) | ./.terraform/modules/__v3__/kubernetes_workload_identity_init | n/a |
 | <a name="module_cert_mounter_argocd_internal"></a> [cert\_mounter\_argocd\_internal](#module\_cert\_mounter\_argocd\_internal) | ./.terraform/modules/__v3__/cert_mounter | n/a |
@@ -59,6 +61,7 @@
 | [kubernetes_namespace.ingress](https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/namespace) | resource |
 | [kubernetes_namespace.keda](https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/namespace) | resource |
 | [kubernetes_namespace.namespace_argocd](https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/namespace) | resource |
+| [kubernetes_namespace.prometheus](https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/namespace) | resource |
 | [null_resource.argocd_change_admin_password](https://registry.terraform.io/providers/hashicorp/null/latest/docs/resources/resource) | resource |
 | [azuread_group.adgroup_admin](https://registry.terraform.io/providers/hashicorp/azuread/latest/docs/data-sources/group) | data source |
 | [azuread_group.adgroup_developers](https://registry.terraform.io/providers/hashicorp/azuread/latest/docs/data-sources/group) | data source |
