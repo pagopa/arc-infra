@@ -18,6 +18,7 @@ tags = {
 
 gpd_payments_pull_base_url = "https://api.uat.platform.pagopa.it/pagopa-gpd-payments-pull/v1"
 bizevents_paids_base_url   = "https://api.uat.platform.pagopa.it/bizevents/notices-service/v1"
+gpd_service_base_url       = "https://api.uat.platform.pagopa.it/gpd/debt-positions-service/v1"
 
 ## Domains
 external_domain = "pagopa.it"
