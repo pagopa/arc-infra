@@ -69,6 +69,11 @@ variable "bizevents_paids_base_url" {
   description = "Url of pagopa bizevents paids api"
 }
 
+variable "gpd_service_base_url" {
+  type        = string
+  description = "Url of pagopa gpd service api"
+}
+
 # Domains
 variable "external_domain" {
   type        = string

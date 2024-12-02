@@ -18,6 +18,7 @@ tags = {
 
 gpd_payments_pull_base_url = "https://api.platform.pagopa.it/pagopa-gpd-payments-pull/v1"
 bizevents_paids_base_url   = "https://api.platform.pagopa.it/bizevents/notices-service/v1"
+gpd_service_base_url       = "https://api.platform.pagopa.it/gpd/debt-positions-service/v1"
 
 ## DNS
 dns_zone_prefix = "cittadini"
