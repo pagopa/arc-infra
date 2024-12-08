@@ -112,8 +112,8 @@ resource "argocd_application" "arc_cittadini_applications" {
         })
         ignore_missing_value_files = false
         pass_credentials           = false
-        skip_crds                 = false
-        value_files               = []
+        skip_crds                  = false
+        value_files                = []
       }
     }
 
