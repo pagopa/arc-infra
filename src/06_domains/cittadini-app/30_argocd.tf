@@ -137,5 +137,11 @@ resource "argocd_application" "arc_cittadini_applications" {
       #   }
       # }
     }
+
+    ignore_difference {
+      group         = "apps"
+      kind          = "Deployment"
+      json_pointers = ["/spec/replicas"]
+    }
   }
 }
