@@ -31,4 +31,4 @@ app_gateway_sku_tier = "Standard_v2"
 
 # AZDOA:
 enable_azdoa             = true
-azdo_agent_image_version = "v1"
+azdo_agent_image_version = "v20241208"
