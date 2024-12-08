@@ -36,7 +36,7 @@ aks_system_node_pool = {
   os_disk_type                 = "Ephemeral"
   os_disk_size_gb              = "75"
   node_count_min               = "1"
-  node_count_max               = "2"
+  node_count_max               = "1"
   only_critical_addons_enabled = true
   node_labels                  = { node_name : "aks-system-01", node_type : "system" },
   node_tags                    = { node_tag_1 : "1" },
@@ -49,7 +49,7 @@ aks_user_node_pool = {
   os_disk_type    = "Ephemeral"
   os_disk_size_gb = "100"
   node_count_min  = "1"
-  node_count_max  = "2"
+  node_count_max  = "1"
   node_labels     = { node_name : "aks-userdefault", node_type : "user" },
   node_taints     = [],
   node_tags       = { node_tag_2 : "2" },
@@ -68,5 +68,5 @@ dns_zone_prefix = "uat.cittadini"
 external_domain = "pagopa.it"
 
 ### ARGOCD
-#https://github.com/argoproj/argo-helm/releases/tag/argo-cd-7.7.1
-argocd_helm_release_version = "7.7.1" #2.13.0
+#https://github.com/argoproj/argo-helm/releases/tag/argo-cd-7.7.7
+argocd_helm_release_version = "7.7.7" #2.13.1
