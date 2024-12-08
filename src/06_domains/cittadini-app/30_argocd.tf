@@ -1,4 +1,13 @@
 #
+# 🔒 secrets
+#
+resource "azurerm_key_vault_secret" "argocd_server_url" {
+  name         = "argocd-server-url"
+  key_vault_id = data.azurerm_key_vault.key_vault.id
+  value        = var.argocd_server_addr
+}
+
+#
 # Terraform argocd project
 #
 resource "argocd_project" "cittadini_project" {
@@ -54,70 +63,100 @@ resource "argocd_project" "cittadini_project" {
   }
 }
 
-#
-# Helm application
-#
-resource "argocd_application" "root_cittadini_app" {
-  metadata {
-    name      = "root-${var.domain}-app-${var.env}"
-    namespace = "argocd"
-    labels = {
-      name : "root-${var.domain}-app-${var.env}"
-      domain : var.domain
-      is_root : true
+
+locals {
+  argocd_applications = {
+    "arc-be" = {
+      name          = "arc-be"
+      target_branch = "main"
     }
   }
+}
 
-  cascade = true
-  wait    = true
+# Creiamo l'ApplicationSet
+resource "argocd_application_set" "arc_cittadini_appset" {
+  metadata {
+    name      = "applicationset-${local.area}"
+    namespace = "argocd"
+  }
 
   spec {
-    project = argocd_project.cittadini_project.metadata[0].name
-    destination {
-      server    = "https://kubernetes.default.svc"
-      namespace = var.domain
-    }
-
-    source {
-      repo_url        = "https://github.com/pagopa/arc-cittadini-deploy-aks"
-      target_revision = "main"
-      path            = "helm/${var.env}"
-      helm {
-        values = yamlencode({
-          _argocdProjectName : argocd_project.cittadini_project.metadata[0].name
-          _azureWorkloadIdentityClientId : module.workload_identity.workload_identity_client_id
-          _gitRepoUrl : "https://github.com/pagopa/arc-cittadini-deploy-aks"
-          _gitTargetRevision : "main"
-          _helmPath : "helm/${var.env}"
-          _namespace : var.domain
-        })
+    generator {
+      list {
+        elements = [
+          for app_key, app in local.argocd_applications : {
+            name         = app.name
+            targetBranch = app.target_branch
+          }
+        ]
       }
     }
 
-    sync_policy {
-      automated {
-        prune       = false
-        self_heal   = false
-        allow_empty = false
-      }
-
-      retry {
-        backoff {
-          duration     = "5s"
-          factor       = "2"
-          max_duration = "3m0s"
+    template {
+      metadata {
+        name      = "${local.area}-{{name}}"
+        namespace = "argocd"
+        labels = {
+          name   = "${local.area}-{{name}}"
+          domain = var.domain
+          area = local.area
         }
-        limit = "5"
+      }
+
+      spec {
+        project = argocd_project.cittadini_project.metadata[0].name
+
+        destination {
+          server    = "https://kubernetes.default.svc"
+          namespace = var.domain
+        }
+
+        source {
+          repo_url        = "https://github.com/pagopa/arc-cittadini-deploy-aks"
+          target_revision = "{{targetBranch}}"
+          path            = "helm/${var.env}/{{name}}"
+
+          helm {
+            values = yamlencode({
+              microservice-chart : {
+                azure : {
+                  workloadIdentityClientId : module.workload_identity.workload_identity_client_id
+                }
+                serviceAccount : {
+                  name : module.workload_identity.workload_identity_service_account_name
+                }
+              }
+            })
+            ignore_missing_value_files = false
+            pass_credentials           = false
+            skip_crds                  = false
+            value_files                = []
+          }
+        }
+
+           sync_policy {
+             sync_options = []
+
+             automated {
+               allow_empty = false
+               prune       = false
+               self_heal   = false
+             }
+
+             retry {
+               limit = "5"
+
+               backoff {
+                   duration     = "5s"
+                   factor       = "2"
+                   max_duration = "3m0s"
+                   }
+               }
+           }
       }
     }
   }
 }
 
-#
-# 🔒 secrets
-#
-resource "azurerm_key_vault_secret" "argocd_server_url" {
-  name         = "argocd-server-url"
-  key_vault_id = data.azurerm_key_vault.key_vault.id
-  value        = var.argocd_server_addr
-}
+
+
