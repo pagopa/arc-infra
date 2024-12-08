@@ -73,90 +73,69 @@ locals {
   }
 }
 
-# Creiamo l'ApplicationSet
-resource "argocd_application_set" "arc_cittadini_appset" {
+resource "argocd_application" "arc_cittadini_applications" {
+  for_each = local.argocd_applications
+
   metadata {
-    name      = "applicationset-${local.area}"
+    name      = "${local.area}-${each.value.name}"
     namespace = "argocd"
+    labels = {
+      name   = "${local.area}-${each.value.name}"
+      domain = var.domain
+      area   = local.area
+    }
   }
 
   spec {
-    generator {
-      list {
-        elements = [
-          for app_key, app in local.argocd_applications : {
-            name         = app.name
-            targetBranch = app.target_branch
+    project = argocd_project.cittadini_project.metadata[0].name
+
+    destination {
+      server    = "https://kubernetes.default.svc"
+      namespace = var.domain
+    }
+
+    source {
+      repo_url        = "https://github.com/pagopa/arc-cittadini-deploy-aks"
+      target_revision = each.value.target_branch
+      path            = "helm/${var.env}/${each.value.name}"
+
+      helm {
+        values = yamlencode({
+          microservice-chart : {
+            azure : {
+              workloadIdentityClientId : module.workload_identity.workload_identity_client_id
+            }
+            serviceAccount : {
+              name : module.workload_identity.workload_identity_service_account_name
+            }
           }
-        ]
+        })
+        ignore_missing_value_files = false
+        pass_credentials           = false
+        skip_crds                 = false
+        value_files               = []
       }
     }
 
-    template {
-      metadata {
-        name      = "${local.area}-{{name}}"
-        namespace = "argocd"
-        labels = {
-          name   = "${local.area}-{{name}}"
-          domain = var.domain
-          area = local.area
-        }
-      }
-
-      spec {
-        project = argocd_project.cittadini_project.metadata[0].name
-
-        destination {
-          server    = "https://kubernetes.default.svc"
-          namespace = var.domain
-        }
-
-        source {
-          repo_url        = "https://github.com/pagopa/arc-cittadini-deploy-aks"
-          target_revision = "{{targetBranch}}"
-          path            = "helm/${var.env}/{{name}}"
-
-          helm {
-            values = yamlencode({
-              microservice-chart : {
-                azure : {
-                  workloadIdentityClientId : module.workload_identity.workload_identity_client_id
-                }
-                serviceAccount : {
-                  name : module.workload_identity.workload_identity_service_account_name
-                }
-              }
-            })
-            ignore_missing_value_files = false
-            pass_credentials           = false
-            skip_crds                  = false
-            value_files                = []
-          }
-        }
-
-           sync_policy {
-             sync_options = []
-
-             automated {
-               allow_empty = false
-               prune       = false
-               self_heal   = false
-             }
-
-             retry {
-               limit = "5"
-
-               backoff {
-                   duration     = "5s"
-                   factor       = "2"
-                   max_duration = "3m0s"
-                   }
-               }
-           }
-      }
+    # Sync policy configuration
+    sync_policy {
+      # sync_options = []
+      #
+      # automated {
+      #   allow_empty = false
+      #   prune       = false
+      #   self_heal   = false
+      # }
+      #
+      # retry {
+      #   limit = "5"
+      #
+      #   backoff {
+      #     duration     = "5s"
+      #     factor       = "2"
+      #     max_duration = "3m0s"
+      #   }
+      # }
     }
   }
 }
-
-
-
