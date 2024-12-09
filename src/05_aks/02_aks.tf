@@ -84,6 +84,8 @@ module "aks" {
   oidc_issuer_enabled       = true
   workload_identity_enabled = true
 
+  microsoft_defender_log_analytics_workspace_id = var.env_short == "p" ? data.azurerm_log_analytics_workspace.log_analytics.id : null
+
   custom_metric_alerts = null
   alerts_enabled       = var.aks_alerts_enabled
   action = [

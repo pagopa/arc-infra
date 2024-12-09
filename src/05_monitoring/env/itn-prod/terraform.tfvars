@@ -15,5 +15,5 @@ tags = {
 }
 
 ### Grafana
-grafana_zone_redundancy_enabled = true
+grafana_zone_redundancy_enabled = false
 grafana_major_version           = 10
