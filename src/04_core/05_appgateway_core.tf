@@ -269,5 +269,10 @@ module "app_gw" {
 
   }
 
-  tags = var.tags
+  tags = merge(
+    var.tags,
+    {
+      "grafana" = "yes"
+    }
+  )
 }
