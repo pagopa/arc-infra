@@ -10,6 +10,10 @@ terraform {
       source  = "hashicorp/azurerm"
       version = "~> 3.116"
     }
+    grafana = {
+      source  = "grafana/grafana"
+      version = "~> 2.19"
+    }
   }
 
   backend "azurerm" {}

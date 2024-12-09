@@ -58,7 +58,7 @@ aks_user_node_pool = {
 nginx_ingress_helm_version = "4.11.1"
 
 # chart releases: https://github.com/kedacore/charts/releases
-keda_helm_chart_version = "2.14.3"
+keda_helm_chart_version = "2.16.0"
 
 
 #

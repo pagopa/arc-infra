@@ -7,6 +7,7 @@ resource "azurerm_resource_group" "grafana_rg" {
 #
 # 📊 Grafana Managed
 #
+
 resource "azurerm_dashboard_grafana" "grafana_dashboard" {
   name                              = "${local.product}-${var.location_short_westeurope}-grafana"
   resource_group_name               = azurerm_resource_group.grafana_rg.name
@@ -29,4 +30,13 @@ resource "azurerm_role_assignment" "grafana_dashboard_monitoring_reader" {
   scope                = data.azurerm_subscription.current.id
   role_definition_name = "Monitoring Reader"
   principal_id         = azurerm_dashboard_grafana.grafana_dashboard.identity[0].principal_id
+}
+
+module "grafana_dashboard" {
+  source = "./.terraform/modules/__v3__/grafana_dashboard"
+
+  prefix               = var.prefix
+  grafana_api_key      = data.azurerm_key_vault_secret.grafana_token.value
+  grafana_url          = azurerm_dashboard_grafana.grafana_dashboard.endpoint
+  monitor_workspace_id = local.log_analytics_workspace_id
 }

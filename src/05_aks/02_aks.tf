@@ -97,7 +97,12 @@ module "aks" {
     }
   ]
 
-  tags = var.tags
+  tags = merge(
+    var.tags,
+    {
+      "grafana" = "yes"
+    }
+  )
 }
 
 #
