@@ -26,8 +26,10 @@ external_domain = "pagopa.it"
 dns_zone_prefix = "cittadini"
 
 
-app_gateway_sku_name = "Standard_v2"
-app_gateway_sku_tier = "Standard_v2"
+app_gateway_sku_name     = "Standard_v2"
+app_gateway_sku_tier     = "Standard_v2"
+app_gateway_min_capacity = 1
+app_gateway_max_capacity = 50
 
 # AZDOA:
 enable_azdoa             = true

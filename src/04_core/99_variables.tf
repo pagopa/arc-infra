@@ -139,13 +139,11 @@ variable "dns_zone_prefix" {
 
 # App Gateway
 variable "app_gateway_min_capacity" {
-  type    = number
-  default = 0
+  type = number
 }
 
 variable "app_gateway_max_capacity" {
-  type    = number
-  default = 2
+  type = number
 }
 
 variable "app_gateway_alerts_enabled" {

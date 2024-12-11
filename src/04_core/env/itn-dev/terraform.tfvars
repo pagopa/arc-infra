@@ -30,6 +30,9 @@ app_gateway_sku_name       = "Standard_v2"
 app_gateway_sku_tier       = "Standard_v2"
 app_gateway_alerts_enabled = false
 
+app_gateway_min_capacity = 0
+app_gateway_max_capacity = 2
+
 # AZDOA:
 enable_azdoa             = true
 azdo_agent_image_version = "v20241208"
