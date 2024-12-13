@@ -13,7 +13,6 @@ module "app_gw" {
   # WAF
   waf_enabled = var.app_gateway_waf_enabled
 
-
   # Networking
   subnet_id    = data.azurerm_subnet.appgateway_snet.id
   public_ip_id = data.azurerm_public_ip.appgateway_public_ip.id
