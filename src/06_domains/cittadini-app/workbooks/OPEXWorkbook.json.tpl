@@ -120,7 +120,7 @@
                           "additionalResourceOptions": [],
                           "showDefault": false
                         },
-                        "jsonData": "[\r\n    {\"label\":\"APIM\",\"value\":\"apim\",\"selected\": true},\r\n    {\"label\":\"internal\",\"value\":\"internal\",\"selected\": true}\r\n]",
+                        "jsonData": "[\r\n    {\"label\":\"APIM\",\"value\":\"apim\",\"selected\": true},\r\n    {\"label\":\"Internal\",\"value\":\"internal\",\"selected\": true}\r\n]",
                         "timeContext": {
                           "durationMs": 86400000
                         }
