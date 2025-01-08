@@ -106,10 +106,37 @@
               "groupType": "editable",
               "items": [
                 {
+                  "type": 9,
+                  "content": {
+                    "version": "KqlParameterItem/1.0",
+                    "parameters": [
+                      {
+                        "id": "180832b5-b7a9-41ba-bde0-95a9a072b3b3",
+                        "version": "KqlParameterItem/1.0",
+                        "name": "origin",
+                        "type": 2,
+                        "isRequired": true,
+                        "typeSettings": {
+                          "additionalResourceOptions": [],
+                          "showDefault": false
+                        },
+                        "jsonData": "[\r\n    {\"label\":\"APIM\",\"value\":\"https://api.${env}.cittadini.pagopa.it\",\"selected\": true},\r\n    {\"label\":\"Internal\",\"value\":\"https://citizen.internal.${env}.cittadini.pagopa.it\",\"selected\": true}\r\n]",
+                        "timeContext": {
+                          "durationMs": 86400000
+                        }
+                      }
+                    ],
+                    "style": "pills",
+                    "queryType": 0,
+                    "resourceType": "microsoft.operationalinsights/workspaces"
+                  },
+                  "name": "parameters - 4"
+                },
+                {
                   "type": 3,
                   "content": {
                     "version": "KqlItem/1.0",
-                    "query": "let startTime = {timeRangeOverall:start};\nlet endTime = {timeRangeOverall:end};\nlet interval = totimespan({timeSpan:label});\nlet data = requests\n    | where timestamp between (startTime .. endTime) and operation_Name startswith \"arc\";\nlet operationData = data;\nlet totalOperationCount = operationData\n    | summarize Total = count() by operation_Name;\noperationData\n| join kind=inner totalOperationCount on operation_Name\n| summarize\n    Count = count(),\n    Users = dcount(tostring(customDimensions[\"Request-X-Forwarded-For\"])),\n    AvgResponseTime = round(avg(duration), 2)\n    by operation_Name, resultCode, Total\n| project\n    ['Request Name'] = operation_Name,\n    ['Result Code'] = resultCode,\n    ['Total Response'] = Count,\n    ['Rate %'] = (Count * 100) / Total,\n    ['Users Affected'] = Users,\n    ['Avg Response Time (ms)'] = AvgResponseTime\n| sort by ['Total Response'] desc\n\n",
+                    "query": "let startTime = {timeRangeOverall:start};\nlet endTime = {timeRangeOverall:end};\nlet interval = totimespan({timeSpan:label});\nlet originUrl = \"{origin}\";\nlet data = requests\n    | where timestamp between (startTime .. endTime)\n    | where url startswith originUrl and not(name has_any (\"OPTIONS\", \"HEAD\"));\nlet operationData = data;\nlet totalOperationCount = operationData\n    | summarize Total = count() by operation_Name;\noperationData\n| join kind=inner totalOperationCount on operation_Name\n| summarize\n    Count = count(),\n    Users = dcount(tostring(customDimensions[\"Request-X-Forwarded-For\"])),\n    AvgResponseTime = round(avg(duration), 2)\n    by operation_Name, resultCode, Total\n| project\n    ['Request Name'] = operation_Name,\n    ['Result Code'] = resultCode,\n    ['Total Response'] = Count,\n    ['Rate %'] = (Count * 100) / Total,\n    ['Users Affected'] = Users,\n    ['Avg Response Time (ms)'] = AvgResponseTime\n| sort by ['Total Response'] desc\n\n",
                     "size": 0,
                     "showAnalytics": true,
                     "timeContextFromParameter": "timeRangeOverall",
@@ -362,7 +389,7 @@
                   "type": 3,
                   "content": {
                     "version": "KqlItem/1.0",
-                    "query": "let startTime = {timeRangeOverall:start};\nlet endTime = {timeRangeOverall:end};\nlet interval = totimespan({timeSpan:label});\n\nlet dataset = requests\n    // additional filters can be applied here\n    | where timestamp between (startTime .. endTime) and operation_Name startswith \"arc\"\n;\ndataset\n| summarize percentile_95=percentile(duration, 95) by bin(timestamp, interval)\n| project timestamp, percentile_95, watermark=1000\n| render timechart",
+                    "query": "let startTime = {timeRangeOverall:start};\nlet endTime = {timeRangeOverall:end};\nlet interval = totimespan({timeSpan:label});\nlet originUrl = \"{origin}\";\n\nlet dataset = requests\n    // additional filters can be applied here\n    | where timestamp between (startTime .. endTime)\n    | where url startswith originUrl and not(name has_any (\"OPTIONS\", \"HEAD\"));\n\ndataset\n| summarize percentile_95=percentile(duration, 95) by bin(timestamp, interval)\n| project timestamp, percentile_95, watermark=1000\n| render timechart",
                     "size": 0,
                     "aggregation": 3,
                     "showAnalytics": true,
@@ -381,7 +408,7 @@
                   "type": 3,
                   "content": {
                     "version": "KqlItem/1.0",
-                    "query": "let startTime = {timeRangeOverall:start};\nlet endTime = {timeRangeOverall:end};\nlet interval = totimespan({timeSpan:label});\n\nlet tot = requests\n    | where timestamp between (startTime .. endTime) \n    | where operation_Name has 'cittadini'\n    | summarize tot = todouble(count()) by bin(timestamp, interval);\nlet errors = requests\n    | where operation_Name has 'cittadini'\n    | where strcmp(resultCode, \"412\") > 0 \n    | summarize not_ok = count() by bin(timestamp, interval);\ntot\n| join kind=leftouter errors on timestamp\n| project timestamp, availability = (tot - coalesce(not_ok, 0)) / tot, watermark=0.99",
+                    "query": "let startTime = {timeRangeOverall:start};\nlet endTime = {timeRangeOverall:end};\nlet interval = totimespan({timeSpan:label});\nlet originUrl = \"{origin}\";\nlet tot = requests\n    | where timestamp between (startTime .. endTime) \n    | where url startswith originUrl and not(name has_any (\"OPTIONS\", \"HEAD\"))\n    | summarize tot = todouble(count()) by bin(timestamp, interval);\nlet errors = requests\n    | where url startswith originUrl and not(name has_any (\"OPTIONS\", \"HEAD\"))\n    | where strcmp(resultCode, \"412\") > 0 \n    | summarize not_ok = count() by bin(timestamp, interval);\ntot\n| join kind=leftouter errors on timestamp\n| project timestamp, availability = (tot - coalesce(not_ok, 0)) / tot, watermark=0.99",
                     "size": 0,
                     "aggregation": 3,
                     "showAnalytics": true,
@@ -406,7 +433,7 @@
                   "type": 3,
                   "content": {
                     "version": "KqlItem/1.0",
-                    "query": "let startTime = {timeRangeOverall:start};\r\nlet endTime = {timeRangeOverall:end};\r\nlet interval = totimespan({timeSpan:label});\r\n\r\nlet data = requests\r\n| where timestamp between (startTime .. endTime) and operation_Name has \"arc\";\r\nlet unknowApi = data\r\n| join kind=inner exceptions on operation_Id\r\n| where type has \"OperationNotFound\";\r\nlet totalRequestCount = toscalar (data\r\n| count);\r\nlet joinedUnknowApi = unknowApi\r\n| summarize\r\n        Count = count(),\r\n        Users = dcount(tostring(customDimensions[\"Request-X-Forwarded-For\"]))\r\n        by operation_Name, resultCode, type\r\n| project \r\n        ['Request Name'] = operation_Name,\r\n        ['Result Code'] = resultCode,\r\n        ['Total Response'] = Count,\r\n        ['Rate (% of total requests)'] = (Count * 100) / totalRequestCount,\r\n        ['Users Affected'] = Users,\r\n        ['Type'] = type;\r\nunion joinedUnknowApi",
+                    "query": "let startTime = {timeRangeOverall:start};\r\nlet endTime = {timeRangeOverall:end};\r\nlet interval = totimespan({timeSpan:label});\r\nlet originUrl = \"{origin}\";\r\nlet data = requests\r\n| where timestamp between (startTime .. endTime)\r\n| where url startswith originUrl and not(name has_any (\"OPTIONS\", \"HEAD\"));\r\nlet unknowApi = data\r\n| join kind=inner exceptions on operation_Id\r\n| where type has \"OperationNotFound\";\r\nlet totalRequestCount = toscalar (data\r\n| count);\r\nlet joinedUnknowApi = unknowApi\r\n| summarize\r\n        Count = count(),\r\n        Users = dcount(tostring(customDimensions[\"Request-X-Forwarded-For\"]))\r\n        by operation_Name, resultCode, type\r\n| project \r\n        ['Request Name'] = operation_Name,\r\n        ['Result Code'] = resultCode,\r\n        ['Total Response'] = Count,\r\n        ['Rate (% of total requests)'] = (Count * 100) / totalRequestCount,\r\n        ['Users Affected'] = Users,\r\n        ['Type'] = type;\r\nunion joinedUnknowApi",
                     "size": 1,
                     "showAnalytics": true,
                     "title": "Operation Not Found",
