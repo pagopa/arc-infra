@@ -6,7 +6,7 @@ module "monitoring_function" {
 
   location            = var.location
   prefix              = "${local.product}-${var.location_short}"
-  resource_group_name = azurerm_resource_group.synthetic_rg.name
+  resource_group_name = azurerm_resource_group.monitoring_rg.name
 
   application_insight_name              = azurerm_application_insights.application_insights.name
   application_insight_rg_name           = azurerm_application_insights.application_insights.resource_group_name
@@ -37,9 +37,10 @@ module "monitoring_function" {
   }
 
   monitoring_configuration_encoded = templatefile("${path.module}/tpl/monitoring_configuration.json.tpl", {
-    env_name         = var.env,
-    api_dot_env_name = var.env == "prod" ? "api" : "api.${var.env}"
-    alert_enabled    = var.synthetic_alerts_enabled
-    appgw_public_ip  = data.azurerm_public_ip.appgateway_public_ip.ip_address
+    env_name               = var.env,
+    api_domain             = local.api_domain
+    alert_enabled          = var.synthetic_alerts_enabled
+    appgw_public_ip        = data.azurerm_public_ip.appgateway_public_ip.ip_address
+    internal_suffix_domain = local.internal_suffix_domain
   })
 }

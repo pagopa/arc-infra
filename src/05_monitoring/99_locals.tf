@@ -17,4 +17,7 @@ locals {
   log_analytics_workspace_name    = "${local.project_core}-law"
   log_analytics_workspace_id      = data.azurerm_log_analytics_workspace.log_analytics.id
   monitor_action_group_slack_name = "SlackPagoPA"
+
+  api_domain             = "api.${var.dns_zone_prefix}.${var.external_domain}"
+  internal_suffix_domain = "internal.${var.dns_zone_prefix}.${var.external_domain}"
 }

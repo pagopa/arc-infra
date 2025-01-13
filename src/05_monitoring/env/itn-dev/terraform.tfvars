@@ -2,7 +2,7 @@
 prefix         = "arc"
 env_short      = "d"
 env            = "dev"
-domain         = "dev"
+domain         = "monitoring"
 location       = "italynorth"
 location_short = "itn"
 
@@ -21,3 +21,7 @@ grafana_major_version           = 10
 ### Synthetic
 storage_account_replication_type = "LRS"
 use_private_endpoint             = false
+
+### DNS
+external_domain = "pagopa.it"
+dns_zone_prefix = "dev.cittadini"
