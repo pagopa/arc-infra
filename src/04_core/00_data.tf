@@ -58,6 +58,12 @@ data "azurerm_subnet" "azdoa_snet" {
   virtual_network_name = local.vnet_name
 }
 
+data "azurerm_subnet" "cae_tools_snet" {
+  name                 = "${local.project}-cae-tools-snet"
+  resource_group_name  = local.vnet_resource_group_name
+  virtual_network_name = local.vnet_name
+}
+
 #
 # 📝 Certificate
 #

@@ -14,6 +14,14 @@ terraform {
       source  = "hashicorp/null"
       version = "~> 3.2"
     }
+    random = {
+      source  = "hashicorp/random"
+      version = "~> 3.6"
+    }
+    tls = {
+      source  = "hashicorp/tls"
+      version = "~> 4.0"
+    }
   }
 
   backend "azurerm" {}
@@ -28,6 +36,6 @@ provider "azurerm" {
 }
 
 module "__v3__" {
-  # https://github.com/pagopa/terraform-azurerm-v3/releases/tag/v8.53.0
-  source = "git::https://github.com/pagopa/terraform-azurerm-v3.git?ref=8405da92a68ffc8267fed02a4689e55387299248"
+  # https://github.com/pagopa/terraform-azurerm-v3/releases/tag/v8.70.0
+  source = "git::https://github.com/pagopa/terraform-azurerm-v3.git?ref=08bfcfae8b0ca536debf8452f0fe29405248dcfb"
 }

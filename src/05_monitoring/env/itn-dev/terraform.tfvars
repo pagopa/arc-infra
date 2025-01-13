@@ -17,3 +17,7 @@ tags = {
 ### Grafana
 grafana_zone_redundancy_enabled = false
 grafana_major_version           = 10
+
+### Synthetic
+storage_account_replication_type = "LRS"
+use_private_endpoint             = false
