@@ -28,7 +28,3 @@ resource "azurerm_application_insights" "application_insights" {
   tags = var.tags
 }
 
-moved {
-  from = azurerm_resource_group.synthetic_rg
-  to   = azurerm_resource_group.monitoring_rg
-}
