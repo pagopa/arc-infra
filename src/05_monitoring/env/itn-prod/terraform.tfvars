@@ -19,9 +19,9 @@ grafana_zone_redundancy_enabled = false
 grafana_major_version           = 10
 
 ### Synthetic
-law_sku                          = "CapacityReservation"
-storage_account_replication_type = "ZRS"
-use_private_endpoint             = true
+law_sku                                    = "CapacityReservation"
+synthetic_storage_account_replication_type = "ZRS"
+synthetic_use_private_endpoint             = true
 
 ### DNS
 external_domain = "pagopa.it"

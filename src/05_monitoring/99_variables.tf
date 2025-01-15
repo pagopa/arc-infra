@@ -94,17 +94,17 @@ variable "law_daily_quota_gb" {
 
 ## Synthetic Monitoring
 
-variable "use_private_endpoint" {
+variable "synthetic_use_private_endpoint" {
   type        = bool
   description = "(Required) if true enables the usage of private endpoint"
 }
 
-variable "storage_account_replication_type" {
+variable "synthetic_storage_account_replication_type" {
   type        = string
   description = "(Required) table storage replication type"
 }
 
-variable "self_alert_enabled" {
+variable "synthetic_self_alert_enabled" {
   type        = bool
   description = "(Optional) enables the alert on the function itself"
   default     = true

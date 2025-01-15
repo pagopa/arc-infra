@@ -23,17 +23,17 @@ module "monitoring_function" {
   }
 
   storage_account_settings = {
-    private_endpoint_enabled  = var.use_private_endpoint
-    table_private_dns_zone_id = var.use_private_endpoint ? data.azurerm_private_dns_zone.storage_account_table.id : null
-    replication_type          = var.storage_account_replication_type
+    private_endpoint_enabled  = var.synthetic_use_private_endpoint
+    table_private_dns_zone_id = var.synthetic_use_private_endpoint ? data.azurerm_private_dns_zone.storage_account_table.id : null
+    replication_type          = var.synthetic_storage_account_replication_type
   }
 
-  private_endpoint_subnet_id = var.use_private_endpoint ? data.azurerm_subnet.cae_subnet.id : null
+  private_endpoint_subnet_id = var.synthetic_use_private_endpoint ? data.azurerm_subnet.cae_subnet.id : null
 
   tags = var.tags
 
   self_alert_configuration = {
-    enabled = var.self_alert_enabled
+    enabled = var.synthetic_self_alert_enabled
   }
 
   monitoring_configuration_encoded = templatefile("${path.module}/tpl/monitoring_configuration.json.tpl", {

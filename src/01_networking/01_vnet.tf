@@ -66,7 +66,7 @@ module "container_app_env_tools_snet" {
   name                 = "${local.project}-cae-tools-snet"
   resource_group_name  = azurerm_resource_group.rg_vnet.name
   virtual_network_name = module.vnet_core.name
-  address_prefixes     = var.cidr_subnet_container_app_env
+  address_prefixes     = var.cidr_subnet_container_app_tools_env
 }
 
 #

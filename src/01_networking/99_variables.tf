@@ -80,7 +80,7 @@ variable "cidr_subnet_azdoa" {
   description = "Azure DevOps agent network address space."
 }
 
-variable "cidr_subnet_container_app_env" {
+variable "cidr_subnet_container_app_tools_env" {
   type        = list(string)
   description = "Address prefixes subnet container app env."
 }

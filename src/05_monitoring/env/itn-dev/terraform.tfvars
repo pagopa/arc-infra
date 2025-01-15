@@ -19,8 +19,8 @@ grafana_zone_redundancy_enabled = false
 grafana_major_version           = 10
 
 ### Synthetic
-storage_account_replication_type = "LRS"
-use_private_endpoint             = false
+synthetic_storage_account_replication_type = "LRS"
+synthetic_use_private_endpoint             = false
 
 ### DNS
 external_domain = "pagopa.it"
