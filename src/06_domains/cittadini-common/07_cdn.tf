@@ -36,31 +36,52 @@ module "cittadini_cdn" {
   custom_hostname_kv_enabled                       = true
 
   delivery_rule_rewrite = concat(
-    [{
-      name  = "defaultApplication"
-      order = 2
-      conditions = [
-        {
-          condition_type   = "url_path_condition"
-          operator         = "Equal"
-          match_values     = ["/pagamenti"]
-          negate_condition = false
-          transforms       = null
-        },
-        {
-          condition_type   = "url_file_extension_condition"
-          operator         = "LessThanOrEqual"
-          match_values     = ["0"]
-          negate_condition = false
-          transforms       = null
+    [
+      {
+        name  = "defaultApplication"
+        order = 2
+        conditions = [
+          {
+            condition_type   = "url_path_condition"
+            operator         = "Equal"
+            match_values     = ["/pagamenti"]
+            negate_condition = false
+            transforms       = null
+          },
+          {
+            condition_type   = "url_file_extension_condition"
+            operator         = "LessThanOrEqual"
+            match_values     = ["0"]
+            negate_condition = false
+            transforms       = null
+          }
+        ]
+        url_rewrite_action = {
+          source_pattern          = "/pagamenti"
+          destination             = "/index.html"
+          preserve_unmatched_path = false
         }
-      ]
-      url_rewrite_action = {
-        source_pattern          = "/pagamenti"
-        destination             = "/index.html"
-        preserve_unmatched_path = false
+      },
+      {
+        name  = "rewrite404"
+        order = 3
+        conditions = [
+          {
+            condition_type = "url_path_condition"
+            operator       = "Contains"
+            match_values = [".html", ".css", ".js", ".png", ".jpg",
+            ".ico", ".svg", ".woff2", ".woff"]
+            negate_condition = true
+            transforms       = null
+          }
+        ]
+        url_rewrite_action = {
+          source_pattern          = "/"
+          destination             = "/index.html"
+          preserve_unmatched_path = false
+        }
       }
-    }]
+    ]
   )
 
   global_delivery_rule = {
