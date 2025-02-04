@@ -24,7 +24,7 @@
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module___v3__"></a> [\_\_v3\_\_](#module\_\_\_v3\_\_) | git::https://github.com/pagopa/terraform-azurerm-v3.git | 8405da92a68ffc8267fed02a4689e55387299248 |
+| <a name="module___v3__"></a> [\_\_v3\_\_](#module\_\_\_v3\_\_) | git::https://github.com/pagopa/terraform-azurerm-v3.git | 2322581d8c88868e17eef5a1c780a1e9ec9bcafc |
 | <a name="module_aks"></a> [aks](#module\_aks) | ./.terraform/modules/__v3__/kubernetes_cluster | n/a |
 | <a name="module_aks_prometheus_install"></a> [aks\_prometheus\_install](#module\_aks\_prometheus\_install) | ./.terraform/modules/__v3__/kubernetes_prometheus_install | n/a |
 | <a name="module_aks_snet_system"></a> [aks\_snet\_system](#module\_aks\_snet\_system) | ./.terraform/modules/__v3__/subnet | n/a |
