@@ -479,11 +479,11 @@
                     "additionalResourceOptions": [],
                     "showDefault": false
                   },
-                  "jsonData": "[\n    {\"label\":\"oneIdentity\",\"value\":\"oneid.pagopa.it\",\"selected\": true},\n    {\"label\":\"bizEvents\",\"value\":\"bizevents\",\"selected\": true},\n    {\"label\":\"payments pull\",\"value\":\"pagopa-gpd-payments-pull\",\"selected\": true}\n]",
+                  "jsonData": "[\n    {\"label\":\"oneIdentity\",\"value\":\"oneid.pagopa.it\",\"selected\": true},\n    {\"label\":\"bizEvents\",\"value\":\"bizevents\",\"selected\": true},\n    {\"label\":\"payments pull\",\"value\":\"pagopa-gpd-payments-pull\",\"selected\": true},\n    {\"label\":\"gpd\",\"value\":\"gpd\",\"selected\": true}\n]",
                   "timeContext": {
                     "durationMs": 86400000
                   },
-                  "value": "bizevents"
+                  "value": "gpd"
                 }
               ],
               "style": "pills",
