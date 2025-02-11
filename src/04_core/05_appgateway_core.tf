@@ -184,7 +184,7 @@ module "app_gw" {
   monitor_metric_alert_criteria = {
 
     compute_units_usage = {
-      description   = "Abnormal compute units usage, probably an high traffic peak"
+      description   = "${module.app_gw.name} Abnormal compute units usage, probably an high traffic peak"
       frequency     = "PT5M"
       window_size   = "PT5M"
       severity      = 2
@@ -193,11 +193,10 @@ module "app_gw" {
       criteria = []
       dynamic_criteria = [
         {
-          aggregation       = "Average"
-          metric_name       = "ComputeUnits"
-          operator          = "GreaterOrLessThan"
-          alert_sensitivity = "Low"
-          # todo after api app migration change to High
+          aggregation              = "Average"
+          metric_name              = "ComputeUnits"
+          operator                 = "GreaterOrLessThan"
+          alert_sensitivity        = "Low" # todo after api app migration change to High
           evaluation_total_count   = 2
           evaluation_failure_count = 2
           dimension                = []
@@ -206,7 +205,7 @@ module "app_gw" {
     }
 
     backend_pools_status = {
-      description   = "One or more backend pools are down, check Backend Health on Azure portal"
+      description   = "${module.app_gw.name} One or more backend pools are down, check Backend Health on Azure portal"
       frequency     = "PT5M"
       window_size   = "PT5M"
       severity      = 0
@@ -225,9 +224,9 @@ module "app_gw" {
     }
 
     total_requests = {
-      description   = "Traffic is raising"
+      description   = "${module.app_gw.name} Traffic is raising"
       frequency     = "PT5M"
-      window_size   = "PT15M"
+      window_size   = "PT30M"
       severity      = 3
       auto_mitigate = true
 
@@ -238,15 +237,15 @@ module "app_gw" {
           metric_name              = "TotalRequests"
           operator                 = "GreaterThan"
           alert_sensitivity        = "Medium"
-          evaluation_total_count   = 1
-          evaluation_failure_count = 1
+          evaluation_total_count   = 2
+          evaluation_failure_count = 2
           dimension                = []
         }
       ]
     }
 
     failed_requests = {
-      description   = "Abnormal failed requests"
+      description   = "${module.app_gw.name} Abnormal failed requests"
       frequency     = "PT5M"
       window_size   = "PT5M"
       severity      = 1
@@ -258,9 +257,9 @@ module "app_gw" {
           aggregation              = "Total"
           metric_name              = "FailedRequests"
           operator                 = "GreaterThan"
-          alert_sensitivity        = "Medium"
-          evaluation_total_count   = 2
-          evaluation_failure_count = 2
+          alert_sensitivity        = "High"
+          evaluation_total_count   = 4
+          evaluation_failure_count = 4
           dimension                = []
         }
       ]
