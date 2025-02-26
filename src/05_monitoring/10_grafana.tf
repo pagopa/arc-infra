@@ -33,7 +33,7 @@ resource "azurerm_role_assignment" "grafana_dashboard_monitoring_reader" {
 }
 
 module "grafana_dashboard" {
-  source = "./.terraform/modules/__v3__/grafana_dashboard"
+  source = "./.terraform/modules/__v4__/grafana_dashboard"
 
   prefix               = var.prefix
   grafana_api_key      = data.azurerm_key_vault_secret.grafana_token.value
