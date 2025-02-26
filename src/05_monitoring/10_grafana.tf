@@ -33,27 +33,10 @@ resource "azurerm_role_assignment" "grafana_dashboard_monitoring_reader" {
 }
 
 module "grafana_dashboard" {
-  source = "./.terraform/modules/__v3__/grafana_dashboard"
+  source = "./.terraform/modules/__v4__/grafana_dashboard"
 
   prefix               = var.prefix
   grafana_api_key      = data.azurerm_key_vault_secret.grafana_token.value
   grafana_url          = azurerm_dashboard_grafana.grafana_dashboard.endpoint
   monitor_workspace_id = local.log_analytics_workspace_id
-}
-
-resource "grafana_folder" "sythetic_monitoring" {
-  provider = grafana.cloud
-
-  title = "Syntetic Monitoring Dashboard"
-}
-
-resource "grafana_dashboard" "sythetic_monitoring" {
-  provider = grafana.cloud
-
-  folder = grafana_folder.sythetic_monitoring.uid
-  config_json = templatefile("./dashboards/synthetic_monitoring.tpl", {
-    subscription_id           = data.azurerm_client_config.current.subscription_id
-    resource_group_name       = azurerm_resource_group.monitoring_rg.name
-    application_insights_name = azurerm_application_insights.application_insights.name
-  })
 }

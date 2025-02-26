@@ -1,6 +1,5 @@
 module "monitoring_function" {
-  source     = "./.terraform/modules/__v3__/monitoring_function"
-  depends_on = [azurerm_application_insights.application_insights]
+  source = "./.terraform/modules/__v4__/monitoring_function"
 
   legacy = false
 
@@ -43,4 +42,10 @@ module "monitoring_function" {
     appgw_public_ip        = data.azurerm_public_ip.appgateway_public_ip.ip_address
     internal_suffix_domain = local.internal_suffix_domain
   })
+
+  # Grafana dashboard
+  enabled_sythetic_dashboard = true
+  grafana_url                = azurerm_dashboard_grafana.grafana_dashboard.endpoint
+  grafana_api_key            = data.azurerm_key_vault_secret.grafana_token.value
+  subscription_id            = data.azurerm_client_config.current.subscription_id
 }
