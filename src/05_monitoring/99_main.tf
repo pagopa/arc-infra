@@ -27,8 +27,14 @@ provider "azurerm" {
   }
 }
 
+provider "grafana" {
+  alias = "cloud"
+
+  url  = azurerm_dashboard_grafana.grafana_dashboard.endpoint
+  auth = data.azurerm_key_vault_secret.grafana_token.value
+}
+
 module "__v3__" {
   # https://github.com/pagopa/terraform-azurerm-v3/releases/tag/v8.70.0
   source = "git::https://github.com/pagopa/terraform-azurerm-v3.git?ref=08bfcfae8b0ca536debf8452f0fe29405248dcfb"
 }
-
