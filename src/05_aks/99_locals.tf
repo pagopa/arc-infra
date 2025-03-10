@@ -16,10 +16,6 @@ locals {
   monitor_action_group_slack_name = "SlackPagoPA"
   monitor_action_group_email_name = "PagoPA"
 
-  # ACR DOCKER
-  docker_rg_name       = "${local.project_core}-container-registry-rg"
-  docker_registry_name = replace("${local.project_core}-common-acr", "-", "")
-
   # DNS
   internal_dns_zone_name                = "internal.${var.dns_zone_prefix}.${var.external_domain}"
   internal_dns_zone_resource_group_name = "${local.project_core}-vnet-rg"
