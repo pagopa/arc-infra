@@ -115,13 +115,3 @@ resource "azurerm_role_assignment" "managed_identity_operator_vs_aks_managed_ide
   role_definition_name = "Managed Identity Operator"
   principal_id         = module.aks.identity_principal_id
 }
-
-#
-# ACR connection
-#
-# add the role to the identity the kubernetes cluster was assigned
-resource "azurerm_role_assignment" "aks_to_acr" {
-  scope                = data.azurerm_container_registry.acr.id
-  role_definition_name = "AcrPull"
-  principal_id         = module.aks.kubelet_identity_id
-}
