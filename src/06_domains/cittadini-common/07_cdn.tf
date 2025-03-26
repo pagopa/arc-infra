@@ -107,8 +107,8 @@ module "cittadini_cdn" {
       },
       {
         action = "Append"
-        name   = contains(["d", "u"], var.env_short) ? "Content-Security-Policy-Report-Only" : "Content-Security-Policy"
-        value  = "script-src 'self' https://pagopa.matomo.cloud/; style-src 'self' 'unsafe-inline'; "
+        name   = contains(["d"], var.env_short) ? "Content-Security-Policy-Report-Only" : "Content-Security-Policy"
+        value  = "script-src 'self' https://pagopa.matomo.cloud/ https://privacyportalde-cdn.onetrust.com/; style-src 'self' 'unsafe-inline' https://privacyportalde-cdn.onetrust.com/; "
       }
     ]
   }

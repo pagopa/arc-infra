@@ -8,7 +8,6 @@ locals {
   #
   key_vault_name    = "${local.project}-kv"
   key_vault_rg_name = "${local.project}-sec-rg"
-
   #
   # 💙 Azure
   #
