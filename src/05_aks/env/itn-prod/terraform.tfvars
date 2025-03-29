@@ -25,7 +25,7 @@ aks_cidr_user_subnet   = ["10.1.1.0/24"]
 # AKS
 #
 
-aks_kubernetes_version = "1.29.7"
+aks_kubernetes_version = "1.31.5"
 
 # https://pagopa.atlassian.net/wiki/spaces/DEVOPS/pages/482967553/AKS#sku-(dimensionamento)
 aks_sku_tier       = "Standard"
