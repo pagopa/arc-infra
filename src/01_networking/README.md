@@ -15,7 +15,6 @@
 
 | Name | Version |
 |------|---------|
-| <a name="provider_azuread"></a> [azuread](#provider\_azuread) | 2.53.1 |
 | <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | 3.116.0 |
 
 ## Modules
@@ -23,39 +22,12 @@
 | Name | Source | Version |
 |------|--------|---------|
 | <a name="module___v3__"></a> [\_\_v3\_\_](#module\_\_\_v3\_\_) | git::https://github.com/pagopa/terraform-azurerm-v3.git | 08bfcfae8b0ca536debf8452f0fe29405248dcfb |
-| <a name="module_apim_snet"></a> [apim\_snet](#module\_apim\_snet) | ./.terraform/modules/__v3__/subnet | n/a |
-| <a name="module_appgateway_snet"></a> [appgateway\_snet](#module\_appgateway\_snet) | ./.terraform/modules/__v3__/subnet | n/a |
-| <a name="module_azdoa_snet"></a> [azdoa\_snet](#module\_azdoa\_snet) | ./.terraform/modules/__v3__/subnet | n/a |
-| <a name="module_container_app_env_tools_snet"></a> [container\_app\_env\_tools\_snet](#module\_container\_app\_env\_tools\_snet) | ./.terraform/modules/__v3__/subnet | n/a |
-| <a name="module_dns_forwarder_lb_vmss"></a> [dns\_forwarder\_lb\_vmss](#module\_dns\_forwarder\_lb\_vmss) | ./.terraform/modules/__v3__/dns_forwarder_lb_vmss | n/a |
-| <a name="module_vnet_core"></a> [vnet\_core](#module\_vnet\_core) | ./.terraform/modules/__v3__/virtual_network | n/a |
-| <a name="module_vpn"></a> [vpn](#module\_vpn) | ./.terraform/modules/__v3__/vpn_gateway | n/a |
-| <a name="module_vpn_snet"></a> [vpn\_snet](#module\_vpn\_snet) | ./.terraform/modules/__v3__/subnet | n/a |
 
 ## Resources
 
 | Name | Type |
 |------|------|
-| [azurerm_dns_a_record.dns_a_apim](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/dns_a_record) | resource |
-| [azurerm_dns_caa_record.cittadini_pagopa_it_ns_caa](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/dns_caa_record) | resource |
-| [azurerm_dns_ns_record.dev_cittadini_pagopa_it_ns](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/dns_ns_record) | resource |
-| [azurerm_dns_ns_record.uat_cittadini_pagopa_it_ns](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/dns_ns_record) | resource |
-| [azurerm_dns_zone.public](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/dns_zone) | resource |
-| [azurerm_network_security_group.nsg_apim](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/network_security_group) | resource |
-| [azurerm_private_dns_zone.blob_storage_account](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/private_dns_zone) | resource |
-| [azurerm_private_dns_zone.internal_pagopa_it](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/private_dns_zone) | resource |
-| [azurerm_private_dns_zone.key_vault_dns](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/private_dns_zone) | resource |
-| [azurerm_private_dns_zone.privatelink_redis_cache_windows_net](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/private_dns_zone) | resource |
-| [azurerm_private_dns_zone.table_storage_account](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/private_dns_zone) | resource |
-| [azurerm_private_dns_zone_virtual_network_link.all_to_vnet_core](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/private_dns_zone_virtual_network_link) | resource |
-| [azurerm_public_ip.apim_public_ip](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/public_ip) | resource |
-| [azurerm_public_ip.appgateway_public_ip](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/public_ip) | resource |
-| [azurerm_resource_group.rg_vnet](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/resource_group) | resource |
-| [azurerm_subnet_network_security_group_association.snet_apim_nsg](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/subnet_network_security_group_association) | resource |
-| [azuread_application.vpn_app](https://registry.terraform.io/providers/hashicorp/azuread/latest/docs/data-sources/application) | data source |
 | [azurerm_client_config.current](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/client_config) | data source |
-| [azurerm_key_vault.key_vault](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/key_vault) | data source |
-| [azurerm_resources.sub_resources](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/resources) | data source |
 | [azurerm_subscription.current](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/data-sources/subscription) | data source |
 
 ## Inputs
